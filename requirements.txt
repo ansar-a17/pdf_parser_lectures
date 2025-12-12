@@ -1,0 +1,31 @@
+# Core PDF processing with Docling
+docling>=1.0.0
+
+# OCR engines
+pytesseract>=0.3.10
+
+# PDF to image conversion
+pdf2image>=1.16.0
+Pillow>=10.0.0
+
+# Image extraction from PDFs
+PyMuPDF>=1.23.0
+
+# Vision models for image analysis (choose one approach below)
+
+# Option 1: Lightweight model (Moondream) - RECOMMENDED for CPU
+transformers>=4.35.0
+torch>=2.0.0
+accelerate>=0.24.0
+
+# Option 2: If using Ollama instead (install Ollama separately from https://ollama.ai)
+# No additional Python packages needed, just run: ollama pull llava
+
+# Option 3: Full LLaVA model (requires more GPU memory)
+# Same transformers requirements as Option 1
+
+# Additional dependencies
+numpy>=1.24.0
+
+# Optional: EasyOCR for even better OCR quality
+# easyocr>=1.7.0
