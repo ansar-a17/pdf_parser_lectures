@@ -41,6 +41,7 @@ class PDFIngestionPipeline:
         self.vision_model_type = vision_model
         self.vision_model = None
         self.vision_processor = None
+        self.device = None  # Will be set when vision model is loaded
         
         if self.analyze_images:
             self._initialize_vision_model()
@@ -167,17 +168,24 @@ class PDFIngestionPipeline:
         
         try:
             if self.vision_model_type == "moondream":
-                # Lightweight vision model - best for CPU
+                # Lightweight vision model - optimized for GPU
+                import torch
                 from transformers import AutoModelForCausalLM, AutoTokenizer
+                
                 model_id = "vikhyatk/moondream2"
-                print(f"    Loading {model_id}...")
+                device = "cuda" if torch.cuda.is_available() else "cpu"
+                self.device = device
+                print(f"    Loading {model_id} on {device.upper()}...")
+                
                 self.vision_processor = AutoTokenizer.from_pretrained(model_id)
                 self.vision_model = AutoModelForCausalLM.from_pretrained(
                     model_id,
                     trust_remote_code=True,
-                    device_map="auto"
-                )
-                print("    ✓ Moondream model loaded")
+                    torch_dtype=torch.float16 if device == "cuda" else torch.float32,
+                    device_map="auto" if device == "cuda" else None
+                ).to(device)
+                
+                print(f"    ✓ Moondream model loaded on {device.upper()}")
             
             elif self.vision_model_type == "ollama":
                 # Use Ollama for local vision models
