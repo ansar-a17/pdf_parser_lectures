@@ -2,7 +2,6 @@ import os
 import io
 from pathlib import Path
 from typing import Optional, Dict
-from pdf2image import convert_from_path
 from docling.document_converter import DocumentConverter
 from PIL import Image
 import fitz
@@ -17,7 +16,7 @@ class PDFIngestionPipeline:
         self.vision_model_type = vision_model
         self.vision_model = None
         self.vision_processor = None
-        self.device = None  # Will be set when vision model is loaded
+        self.device = None
         
         if self.analyze_images:
             self._initialize_vision_model()
