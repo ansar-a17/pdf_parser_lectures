@@ -1,0 +1,1579 @@
+[Automatisch gegenereerde transcriptie. Ter verduidelijk kunnen wijzigingen zijn aangebracht.]
+Then we can start talking about skill spaces.
+
+Um, so for this lecture we had some things that we had to read.
+
+Um, the article on skill space is a tutorial that may have been useful to you to look over to understand the lecture.
+
+Uh, did any of you have time to look over this or.
+
+Not really. Okay, well, hopefully you get most of it out of this lecture, so try to ask questions.
+
+Uh, if things are unclear and try to, to, uh, keep up with with the things uh, discuss.
+
+So in a previous lecture, we talked about Gabor filters as a way to describe an image.
+
+So locally described, uh, the frequency is present in the image.
+
+Um, and you can use that to find objects.
+
+Um, so, for example, if we have this, this dock here and we want to find it back in this other image.
+
+Um, there are different things that we can use, right?
+
+So Gabor filters is one of the things that I mentioned already, but maybe other things that that you may know from other lectures.
+
+Um. Yeah, well you're transforming.
+
+Yeah. The fast Fourier transform, that would give you the global frequencies of the image instead of the local one.
+
+So we wouldn't be able to tell you what are the frequencies here or here or here.
+
+It will just tell you what are all the frequencies in this image.
+
+And assuming that you have like just the object that you're looking for, perfectly localised in one image.
+
+Uh, you could find the, you could, uh, get the frequencies out of this, but then finding it here, you would still need the localised,
+
+uh, part, but that's, that's indeed going in the direction of, uh, getting the frequencies out of the image.
+
+Anything else you could use to to find this object in the other image?
+
+We can use a couple times. Yeah, we can use our filters. Very good.
+
+Gaussian smoothing. Yeah. Yeah, indeed.
+
+That's that's a way to to get features from the image locally. Any other thoughts?
+
+Yeah. These buildings are of.
+
+Yeah, yeah, yeah. You could use that. You could use the colour even.
+
+So you could just do that. You could look at the edges of this image.
+
+So there are a lot of ways that you already know that can help you try to localise one object into another image.
+
+But given this specific image and I want to localise this specific depth with this, this, uh,
+
+tile that it has and this shape of a beak and this, this shape of the ball here in the tail.
+
+Um, well, all these methods work.
+
+And if they won't work, what would be the main drawback of of of all these methods that we mentioned so far?
+
+Yeah. Let's see. It's like invariances.
+
+Things from the scene aren't always the same. For example, the orientation.
+
+The orientation. That's very good indeed. Sort of. The the dock here is still oriented in the same way, but it could be rotated.
+
+And then all of a sudden you couldn't be able to see it.
+
+And we're going to discuss in the next lecture about how to deal with different orientations of the objects.
+
+Any other thoughts, other reasons why this may fail? Yeah.
+
+Yeah, exactly. The size is different in this image. So here the dock is a lot bigger than here.
+
+And then we cannot do a direct matching from from one image to the other.
+
+And this is actually what we're going to talk about in this lecture.
+
+We're going to talk about scale differences and how to find the scale at which you want to look at an image.
+
+So first I want to ask you what does scale mean to you?
+
+What what specifically in an image represents the scale?
+
+If you are to say it in in your own words, when I scale said scale, what?
+
+What does it, uh, make you think of? Hey.
+
+Yes. The relative size of the. Yeah, exactly the relative size of the object.
+
+So that's actually the number of pixels a certain object takes in an image, as opposed to the number of pixels you would take in the other image.
+
+So an example with a duck, one of them takes a lot more pixels than the other one.
+
+Um, where do we deal with multiple scales? When we talk about computer vision, we talk about images.
+
+We talk about videos. Can give me some examples. Where would you have multiple scales of objects?
+
+Object detection. Object detection. Yeah. For example, I might more precisely what?
+
+What kind of object do you think of? I don't think it's okay.
+
+It's not the wrong answers, faces. And why would the faces be different sizes?
+
+Why? There might be some individual differences among people that there may be differences among people, but any other reason?
+
+Like to compare them? No, but I mean, why would their skill difference be between different faces in an image?
+
+Yeah. Perspective. They're close enough for the three of us.
+
+Exactly. Yeah. So if you're closer to the camera, then. Then you will like.
+
+Your face will take more pixels than the face of somebody who was sitting far in the back.
+
+So then you're going to have different sizes depending on the distance towards the camera.
+
+Uh, any other. I saw a hand raised up somewhere.
+
+Okay. Yeah. Yeah. Um, here I have an example.
+
+Um, it's about fishes, but it's equally valid for face ID, so you can think of it as faces.
+
+But if you would want to detect, for example, uh, fish, uh, in, in, uh, uh,
+
+environmental footage, try to find out how many fish are swimming in a certain lake.
+
+Um, then you would have a lot of variation in, in sizes.
+
+So you have fish that are closer to the, the camera and some that are really far away, but also across across species.
+
+They have variations in sizes. So you have different species that have different sizes.
+
+And ideally you would want to detect all of them across all the scales.
+
+So. What kind of information do we have at that high scale?
+
+And we don't have a low scale or the other way around. What kind of information?
+
+Is present in a high resolution image or high scale object, and is not there in a low resolution image or low scale object.
+
+Yeah. The frequencies. Yeah, exactly.
+
+Very good. Exactly what I, what I was actually, uh, hinting towards.
+
+So, for example, if you have this, this picture of a cat, um, this is a lot high resolution.
+
+This one is actually 50 by 50 pixels, but I resize it to 200 by 200 so we can see it, uh, comparatively.
+
+So you can see this one is a lot more blurred.
+
+And then if we look at the free analysis of this, this pictures, then you see that the, the high resolution one has a lot more, uh, high frequencies.
+
+So away from zero zero, while the low resolution one has only frequencies close by to zero zero, so it loses all the high frequency components.
+
+So that's the part we would use. We lose when when we, uh, downscale images, we lose the high frequency details of the image.
+
+So when we talk about scale, I said,
+
+we want to find some kind of magic way that would tell us at which scale to look at at different parts of, of this image.
+
+So for example, there's different parts that help us recognise this specific dark,
+
+uh, in this image and then, uh, localise it back and in the other image.
+
+Um, and typically these parts that are representative of an image, they, uh, we call them,
+
+uh, interest points or key points or for the sake of this lecture, we would call them blobs.
+
+So just some kind of blob, part of the image that has more or less consistent texture or some strong boundary around it, or some kind of, um,
+
+information that that makes it stand out from the rest of the, uh, the image and this,
+
+this interest points or blobs, they are really essential in trying to recognise an object.
+
+They are the the thing that we want to focus on, and then we want to know which scale to look at these blobs,
+
+to be able to find out, uh, the object across different scales in different images.
+
+And now there is a magic way. Luckily, otherwise we wouldn't be here talking about it.
+
+There is a magic way to talk about to find the correct scale at which to look at an image.
+
+Um, and that is using image derivatives.
+
+So this is a bit of a warning. We're going to talk about image derivatives in this lecture a lot.
+
+And we're going to I'm going to try to slowly build it up.
+
+And if you get lost just just raise your hand and be like, hey I didn't understand this part.
+
+Can you explain it or I really don't know what what this this function does.
+
+Can you re-explain it? Okay.
+
+But before we we talk about image derivatives, I have to get you back to the edge detection,
+
+because this is where the whole story about image derivatives starts.
+
+Um, and you've done already a bit on edge detection.
+
+So you have the lecture on on convolutions and their edge detection was mentioned.
+
+So. My question is, uh, what causes an edge in an image?
+
+So what kind of information would cause this, these edges to to be detected in an image?
+
+Yeah. And in contrast of what?
+
+Sure changes in the future.
+
+Going back to work. Yeah, yeah, very good indeed.
+
+So you can have, uh, changes in, in, uh, intensity.
+
+So, for example, if you have a greyscale image going from, uh, lighter grey to a darker grey or to black, but you can also have changes in colour.
+
+So going from blue to red or from green to, to purple. And that would also cause an image.
+
+Um. Yeah. So these are discontinuities in colour and brightness.
+
+And there is a mathematical operator that helps us detect these rapid changes in a signal.
+
+So there is a mathematical operator that people can use to detect changes.
+
+Yeah. There's a double double derivative.
+
+Um. Why do you think it's the devil? Derivative. It was an example of, like, the passion.
+
+Yeah. Manages to find exactly where the boundary was.
+
+Yeah, that's actually correct. We're going to come back to that, I think, over quite a few slides around slide 20 or so.
+
+We're going to get to that. Uh, but no I'm actually asking a bit more intuitive.
+
+So if you have a signal and you want to check if this signal is constant or there's a change in the signal,
+
+something has varied, has moved away from from the previous values that you observe.
+
+So for example, imagine that that you have, um,
+
+a motion sensor in your house or something you want to detect if somebody has moved or a camera that you set in your house,
+
+you want to detect if something has moved. And you want to detect the change.
+
+So there was nothing happening. Constant, constant, constant the same background all the time.
+
+And then all of a sudden some person entered the house and then. Yeah, yeah, that's what I mean.
+
+Yeah, yeah. And what is a derivative in intuitive terms.
+
+Yeah, yeah. It tells you from the previous value to the next value.
+
+How did this signal change? So indeed that's that's exactly what we want to look at.
+
+We want to look at derivatives and we want to see how the signal changed.
+
+So for example here I have an image I just has like this, this, uh, black bar in the middle and white background.
+
+And then I take a line through this image and then you see the image intensity goes from high value and then smoothly decreases to low values.
+
+That's the black area. And back to, to, uh, high values.
+
+And then if I take the the first order image derivative then it will look like this.
+
+So we'll have an extrema a minimum here at this edge and a maximum here at this edge.
+
+So those are the two edge points the extrema. And there's a way to approximate this, this first or the derivative.
+
+And I think you've already used it in the, the, uh, edge detection lecture.
+
+But if you think about it, just like in mathematics, that's also an option.
+
+How would you approximate the derivative? Um, the difference of Gaussians.
+
+So now we're talking about the first order image derivative right.
+
+I'm going to to. Um, I'm going to talk about difference of Gaussians towards the end of the lecture.
+
+Um, and that's that's a completely different story.
+
+But for now I'm just thinking about you have a first order image derivative where you have like I gave you the example with the signal.
+
+You have your, your camera feed and you want to detect the change. You take the derivative of the signal to find the change.
+
+But you can also approximate this instead of actually computing the derivative of the signal.
+
+Yeah. Using filter. Yeah, exactly. Using a filter.
+
+And which filter would you use? Yeah.
+
+Yeah. Uh, what does a Gaussian filter do?
+
+Yeah. So would it help us find. Yeah.
+
+Would it help us find that the changes in the image. If we smooth the image.
+
+Any other thoughts? What kind of filter would we use? No.
+
+Okay. So I'm going to try to build it up from just saying that in mathematics, when you have,
+
+uh, for a certain derivative, you can approximate it with finite differences.
+
+So here's the partial, uh, derivative of f to x.
+
+This is how we, we, we make a little delta to, to say the partial partial derivative.
+
+So this is the first order partial derivative of function f of x with respect to x.
+
+And this in mathematics has been shown to be approximately f a x plus an epsilon a small epsilon minus f of x divided by this epsilon.
+
+And as epsilon tends to zero, this becomes more and more precise.
+
+This, this uh approximation of the derivative. So you actually can approximate a derivative of a function by taking.
+
+Finite differences between measurements at very small distances.
+
+So I don't really. I don't think I have a.
+
+Uh, marker to draw it that so I could draw. How to visualise this, this, uh, small differences, but.
+
+Yeah, I think that will take too much time.
+
+But. But if you have a function, you can discretize it.
+
+And then you just draw a lines between every step in the function.
+
+But in principle this is this is a basic way of approximating the first order derivatives.
+
+So you have the function evaluated at one location, the function evaluated at that location plus an epsilon and then divided by the epsilon.
+
+And now when you work with images we can only work with pixels, right?
+
+We cannot work with sub pixels. I mean we could, but it's a little more complicated.
+
+So let's restrict ourselves to just working with integer pixels.
+
+So then what this becomes is the image at the pixel x plus one minus the image of the pixel x divided by one.
+
+So that's differences of neighbouring pixels. And that's how we can approximate the finite difference.
+
+So now I'm going to go back to to my previous question.
+
+How would you then write this with with a convolutional filter?
+
+Given that you know how you can approximate the first sort of derivative, you know that we're working over images that get values over pixel values.
+
+What would be the filter that we can use to compute the first order image derivative?
+
+And it's. So what does this say?
+
+This is the function at the value x plus epsilon minus the function of the value x.
+
+So as I said before, this in images would become neighbouring pixels.
+
+So if I want to subtract neighbouring pixels from each other, what kind of filter would I use?
+
+Come on, guys, you know this one.
+
+I think I've seen it before in a previous lecture, so I'm sure once I'll show the slide, you're going to be like, oh yeah, of course I knew it.
+
+So if you want to compute differences between neighbouring pixels. F of x plus one minus f of x.
+
+And then do this in a filter with a convolution. What would my kernel look like?
+
+No thoughts. Okay. Then I'm going to show you the result.
+
+And then you're going to to say, okay, I knew this. Of course I knew this.
+
+So this is the result. This is, this is the kernel I was talking about.
+
+It's the one minus one. Right. So it takes the the image and the current pixel, the image of the next pixel.
+
+And then it computes the difference between these two. This what this kernel does.
+
+And then you can do it and uh oops sorry.
+
+You can do this in the in the x direction.
+
+And then you get the vertical edges by doing this. So you get where the differences vary.
+
+And then you're going to get the vertical edges like here. Or you can do it in the y direction.
+
+So this and in this direction. And then you get all these horizontal edges like this.
+
+Yeah. Is this part clear so far?
+
+There is this. This filter is minus one plus one.
+
+Compute edges in the image and they are approximate first order image derivatives.
+
+So now. Imagine that you have a noisy signal, so imagine your image is noisy.
+
+So here is not a smooth signal anymore. But there was like some noise added to it.
+
+And now I compute the image derivative.
+
+I can compute it with this approximation with the filter that I showed you just now, the one minus one.
+
+And then I get the whole bunch of noise out and I lose where the edge is more or less just everything becomes extremely noisy.
+
+Why does this happen? Do you guys have any thoughts about how could this happen?
+
+By computer because its focus increases its scale.
+
+If the spikes in noise is like a ring.
+
+Are you sick of me? And then some of the.
+
+And we should maybe consider the bigger picture. I don't know how that would translate into function.
+
+Okay. It's actually quite, quite an insightful answer.
+
+Um, indeed.
+
+Um, it's it's because there's noise in the image and the noise will actually get amplified when computing this, this differences with the neighbours.
+
+And we want to look at a scale this this bigger than the noise to be able to find the edge back.
+
+So here's the example with the image. So I added some some noise to the the the image.
+
+And then I computed the, the to uh edge directions on the, the x direction and the y direction.
+
+And then you can see it's extremely noisy here. I don't even see the pattern anymore in the apron.
+
+And a lot of edges have been, uh, removed or are not clear anymore.
+
+So I wonder, how can I fix this? Do you have any thoughts?
+
+Yeah. Crazy. Gaussians. Remove noise.
+
+Very good. Yes. Exactly. Yes. Yes, indeed.
+
+So Gaussians remove noise. And that's something that you have to keep in mind for the rest of your lives.
+
+If you do something with computer vision, Gaussian noise, remove noise.
+
+So, um, what we can do is we have our noisy signal as before, and then of course, we're going to convolve it with the Gaussian h of x.
+
+And that's going to smooth it. That's going to create a smooth line like here in the green one.
+
+And then we can take the the first order derivative.
+
+So that gives us a big a maximum where the edge was.
+
+And that's a lot cleaner. But we can do this also in a more efficient way.
+
+And for that, I have to talk about this derivative of convolution theorem.
+
+Can somebody tell me what what is this ugly equation here says?
+
+In words. How do I translate this this equation in in words.
+
+It's also a good, uh, um, skill to learn, to be able to look at the formula and say, what does it say in words?
+
+Can you read it? So what's on the purple side?
+
+Derivative of. H. And, um, this is a convolution.
+
+So what does the purple side say again? You're almost got it right.
+
+But the derivative of convolution. So it's the derivative of the image convolution with the Gaussian filter.
+
+Right. Instead the smoothing, the derivative of the smoothed image here on the purple side, and then on the green side.
+
+What? What do I have on the green side? Yeah.
+
+This represents the kernel for the f of x is the the input image or the input signal where we're looking now for one d for simplicity.
+
+But yeah it's the input and H is the the kernel is the Gaussian convolve image would be.
+
+Uh maybe convolved with the image.
+
+So I use this star symbol here to, to represent the convolution.
+
+So indeed that's, that's exactly what's very good. That's exactly what this formula says.
+
+So it says that if we want to compute the derivative of a smoothed image, we can actually first take the derivative of our kernel,
+
+which in this case is the derivative of the Gaussian, and then convolve with the image.
+
+So we can actually we do this in one step.
+
+So before we had to do three steps right, we had sort of two steps.
+
+We had to first smooth the kernel and then compute the the derivative.
+
+But now we can do this in one step. So we can just take our noisy signal and convolve it in one step with um with the derivative of the Gaussian.
+
+And that gives us exactly the same result. And this is the the derivative of the Gaussian.
+
+This is how it looks like, by the way to take the derivative of a Gaussian.
+
+Why is this useful? Because.
+
+Yeah, because it makes it more efficient in one way. More efficient.
+
+If it's like reduce. The function to simple functions.
+
+Yeah. Faster processing. Yeah.
+
+Yeah. And it's I don't have to go twice over the image. Right.
+
+So in the previous case, I had to perform two times the operation over the image.
+
+I had to first go over the image, smooth it with with the smoothing filter,
+
+and then go again over the image with the derivative filter and compute the first order derivatives.
+
+And now I can do that in one step by just going over the image with the derivative of a Gaussian filter, and be done.
+
+Just one step up processing. So indeed it's a lot more efficient.
+
+And this is the example. And then the noisy image just to show you.
+
+So here I computed the derivative of the Gaussian on the x direction and the derivative of the Gaussian in the y direction.
+
+And then here are the results for the noisy image. So I use here a sigma of three pixels.
+
+And you can see that the details on the apron are actually a bit more visible than they used to be,
+
+and some of the edges have become a lot more visible than in the noisy image.
+
+So a take home message for you. Um, I think this this may be a bit confusing for all of you.
+
+Something to remember. If everyone, at any time in your life, somebody asks you like, what's a gradient?
+
+Uh. It's just. Sort of like a bookmark in your brain.
+
+It's a vector of first order derivatives over dimensions.
+
+That's what it is. It's it's nothing fancy, nothing scary.
+
+People talk about gradients, and they. You get scared. No, it's just a vector containing the first order derivatives.
+
+Across the dimensions of the input. So in our case we have two inputs.
+
+We have the x and the y. And then we take the derivative in the x direction, the derivative in the y direction and put it in a vector.
+
+And that's the image gradient. Are there any questions so far?
+
+Anything said that? Got you confused or.
+
+I went to fast over. No.
+
+Then we go on and that's something that, uh, was referred to or mentioned just just a bit ago.
+
+And that was another way of detecting the edges. So.
+
+We have now again, our, uh, input image. And we again take a line through this input image.
+
+And we have again the um, values that have high intensity going to low intensity.
+
+And we want to find the edge. Now there is a second manner to find the edges in the image.
+
+The first one was to compute the first order image derivatives.
+
+And that would give us the extrema. So that would give us a minimum and a maximum here.
+
+But we can also compute a second order image derivative.
+
+And if we compute the second order image derivative, then we are going to find the edges of the zero crossing.
+
+So the zero crossing are where the image intensity switches from negative from zero to to one, or from negative to positive.
+
+So it's it's a crossing point where, where the values go across zero.
+
+So it's actually from negative to positive. So it goes from from a positive value to a negative value and back to, to uh positive value.
+
+And then these points here they're called the zero crossing of the the filter responses.
+
+And that's where you can find the edges as well by taking the second order image derivative.
+
+So there are two ways in which you can uh compute image derivatives.
+
+Uh sorry in which you can detect edges. Um so now I'm going to ask you how can I take a second order image derivative.
+
+So we talked about first order image derivatives. That's.
+
+By approximating it with this this, uh uh um, minus one one or just computing the derivative of a Gaussian filter.
+
+Yeah. But now, over the course of.
+
+Over. Um.
+
+What do you mean? Like the. I wondered when you would be the first years of the first.
+
+That's that's that's a very good insight indeed. So if you want to obtain a second ordinary, what if you take a first started derivative twice.
+
+Um. And do you maybe know how would the filter look like if you were going to do this with the filter,
+
+like we did with the the finite difference is it approximates the first sort of image derivative.
+
+What would be a filter that approximates a second order image derivative.
+
+Thank you. It's your. So maybe maybe that's a good exercise for for all of you.
+
+If you have a piece of paper or just your laptop open. Um, you could just compute twice the finite differences between four pixels.
+
+So you have x0, x1, x2, x3. And then you compute the finite differences between these four pixels once.
+
+So then you have x zero minus X1X1 minus X2X2 minus x stream.
+
+That's the first sort of image derivative. And then apply it again on the second one.
+
+So it's just computing pixel differences twice. So you compute first pixel differences with the neighbouring pixels once,
+
+and then a second time you again compute differences with these, uh, pixels again.
+
+This? Is anyone trying that? You can just open a notepad and type it.
+
+I can try to do that as well. I can just open a notepad and try to type it for you so then you can look at it.
+
+Uh, yeah. So we have x0 x1 x2 x3.
+
+Right. We have, uh, four pixels. So the first order.
+
+Uh, first. Or the derivative.
+
+It's going to be zero minus x one.
+
+That's one pixel. Then we have x1 minus x2.
+
+That's another pixel. And then we have x2 minus x3.
+
+There's another pixel. I should add one more x4. And then I have.
+
+X three minus x four. And now I'm going to take the.
+
+I'm going to take the second order image derivative by taking again a derivative over these pixels.
+
+So second. Order derivative.
+
+So that's going to give me. X0 minus x1 minus.
+
+X1 minus x2. Then I'm going to have the second pixel.
+
+It's going to be x1 minus x2.
+
+Oops, sorry. X1 minus x2 minus.
+
+X2 minus x3. So actually I didn't need the last one.
+
+And I'm going to rewrite this one so I can remove the last pixel that was not needed.
+
+And I'm going to rewrite this again. So what does this become?
+
+First pixel is x zero minus x one minus x one.
+
+That makes minus 2X1. Plus x2.
+
+And the second pixel is x1 minus two x2 plus x3.
+
+Right. So what is the kernel that I'm using?
+
+To compute a second order image derivative. So I compute finite differences between pixels twice.
+
+It just in notepad. What is the kernel that I've used?
+
+Yeah. Um, it's a tree.
+
+It's a tree number kernel. It's a three dimensional kernel. And just as a hint.
+
+So look at the result that I got, the pixels that I got.
+
+What is the kernel? What did I get?
+
+I got two, one times zero, minus two times six.
+
+One plus one times six. Two. And then the same thing for the next one.
+
+Yeah. Exactly. Yeah. Yeah, exactly.
+
+That's. That's the kernel. I mean, it's it's it's obvious.
+
+Right. It's exactly what you get if you compute finite differences twice over the pixels you get, you get exactly that kernel.
+
+Okay. Going back to our.
+
+Slides.
+
+So indeed, if you want to compute finite differences, you can approximate, uh, if you want to compute the second order derivative to find them,
+
+the location of the edges, you can actually approximate the second order derivative with kernels that look like this one minus to one.
+
+And that will give you the. The second order etched into the X direction.
+
+And then if you transpose this kernel, it will give you the second order derivative in the y direction.
+
+Again, is there a problem with this kernel? If we just apply this over the image.
+
+Yeah, exactly. We have exactly the same story as we had before with the one, uh, first order, Colonel.
+
+If there is noise in the image, it will be amplified. We're not going to be able to find the edges, so we have to smooth again.
+
+And again, we're going to do exactly the same story as we did with the first sort of derivative.
+
+We're going to use the uh, derivative of convolution theorem.
+
+And the derivative of convolution theorem told us something.
+
+It's good if you remember it. Yeah. First day all, then we probably get.
+
+Exactly. It's very good. It's a good memory. So.
+
+So we first, um, instead of doing it in three steps or smoothing and then using this, uh, one minus two, one, uh,
+
+kernel to compute the second order derivative, we can just convolve the,
+
+the input image or the input signal with the second or the derivative of a Gaussian.
+
+And it will have exactly the same result. And the second order, the derivative of a Gaussian looks like this.
+
+So it goes up and then it goes down and then goes a bit up again.
+
+Uh, it's also referred to as an inverted Mexican hat because of the shape it has.
+
+And it actually looks like this if you visualise it in 2D.
+
+So in 2D, the second order derivative of a Gaussian, uh, will have this, this, this shape.
+
+And here it's visualised as a, as a 2D from on top.
+
+So you have one uh, lower uh uh circle and then with, with darker values and then a brighter circle around it.
+
+That's where the edges here are. And then the black one is here.
+
+So the lower values. Um. This is called.
+
+So the second order derivative of a signal is called a Laplacian.
+
+If people ask you what cell application have you ever heard in your life of a Laplacian?
+
+It's the second or the derivative of a function.
+
+And here we don't use it as a vector. The gradient keeps it as a vector.
+
+The Laplacian adds it across dimension, so you have the second order derivative on the x dimension plus the second,
+
+or the derivative on the y dimension, and that creates the Laplacian.
+
+So in this case this is the Laplacian of a Gaussian I call it log.
+
+Um and this is what the formula here says.
+
+So I know it looks scary. It looks like oh my god, there's a lot of little wiggles on on on the slide.
+
+I don't understand it. It's just this partial to the power two divided by partial departure to X that says
+
+is the second order derivative of this function f h of x y with respect to x,
+
+and this h of x, y was our Gaussian, our 2D Gaussian. And then the same thing here.
+
+Second ordinary with div of the Gaussian with respect to y.
+
+And then we add them together and that creates our Laplacian function.
+
+Yeah. Now I have a question about you.
+
+So, you know, this is but just just to to clarify once more, Laplacian is something you can compute of any function, not only of Gaussians.
+
+So any function can have a Laplacian. Any function can have a second order derivative.
+
+And ablation of a Gaussian is just a specific thing that we are looking at now, and that looks like this.
+
+For other functions it will have different shapes. So what does control the the scale of the operation of Gaussian?
+
+So when I talk about the scale of allocation of a Gaussian, what do I mean by that first?
+
+Yeah, you. Uh, only that this part.
+
+Only the black one. That's a big circle for someone who's just.
+
+Will it? Okay, how about I ask, what is the scale of a Gaussian?
+
+And that's something we talked about in previous lecture.
+
+Yeah. Yeah. The sigma controls the scale of one Gaussian.
+
+So when I refers to the scale of a Gaussian, I typically refer to the value of the sigma and inside of this Gaussian function.
+
+And in this case we're talking about Laplacian of Gaussian.
+
+Right. So we're not talking about the general application. So a Laplacian of a Gaussian is the second order derivative of a Gaussian.
+
+So I take the derivative of a Gaussian twice. What?
+
+What does the scale of of Laplacian on Gaussian refers to?
+
+Yeah. Second.
+
+Yeah, exactly. Yeah. Yeah. So if the Gaussian has a sigma and the sigma of the Gaussian controls how much the Gaussian extends, right?
+
+How big the Gaussian hat is. That's that's what the sigma controls.
+
+Now if I take the second or the derivative of the derivative of that, it's not going to change its extent.
+
+It's still going to be the same grid over each.
+
+I have to draw it. I'm not going to it's not going to become smaller because I take the second derivative of H.
+
+So the sigma still controls how how spread out this this function is.
+
+So the sigma parameter of the Gaussian will still control how how big this, this uh hat is here the Laplacian of Gaussian.
+
+So when I talk about a scale of a Laplacian I mean how spread out this this this function is.
+
+So how big the hat is not only the black inside part of the hat, but the whole thing.
+
+How big it is. And that is controlled by the sigma parameter of the original Gaussian, from which I computed the second order derivative.
+
+Yeah, I think we can take a break now and then come back at quarter two for the second half.
+
+[Automatisch gegenereerde transcriptie. Ter verduidelijk kunnen wijzigingen zijn aangebracht.]
+So, um, before the break, we're talking about, uh, uh, Laplacian of a Gaussian.
+
+And what's the scale of the, uh, Laplacian of the Gaussian?
+
+And that is the extent of the function. And that is controlled by the sigma parameter of the Gaussian.
+
+And now I'm going to show here an example of performing this same edge detection.
+
+But now with the Laplacian. So we have the second order derivative on x and the second order derivative on the right of the Gaussian.
+
+And then I convolve the image with this. And then I get the the edges uh, on the the x and y direction.
+
+It's I see here they're flipped. So this should be actually here.
+
+And the other one should be there. Um, and then what you see is that typically they actually have both dark and bright, uh, values along the edge.
+
+And that's because the edge now is not at the maximum.
+
+So it's not bright or dark, but it's a crossing point.
+
+So it's a point where you go from a bright to a dark value or the other way around.
+
+So that's that's what you see here now along the edges that you don't have just one, uh, maximum or extreme.
+
+So take home message. The Laplacian is second or the derivative is the sum of the second order derivatives across the dimensions of the input.
+
+The gradient is a vector of the first order derivatives.
+
+So if at least this you take out of the.
+
+Of course, it's already good enough.
+
+Uh, but now we're going to go and talk about, uh, the thing that we started with and that's how to detect the scale,
+
+uh, of the blobs in an image and how to do multi scale, uh, image recognition.
+
+And for that we need the location.
+
+And also, another take home message from the previous part of the lecture was that there are two ways to detect edges,
+
+and that's which first started there image derivatives or with second order image derivatives.
+
+First order image derivatives. The extrema points are the edges.
+
+Second order image derivatives. The crossing points are the edges.
+
+And now we're going to talk about blobs. So blob, if you're looking at a blob in an image is typically a ripple in an image.
+
+But it's a multi directional ripple. So it's it's actually a change in an image in multiple directions.
+
+And because it's a change in an image in multiple directions we actually can use the applications.
+
+So an application of Gaussians convolutional operations of Gaussians to find the location of this these blobs in an image.
+
+But before we talk about that, we have to talk about, uh, normalising the Laplacian because dislocations have a bit of a problem.
+
+And that problem is that they are derivatives of a Gaussian.
+
+And what happens when you have derivatives of a of the Gaussian is that the higher the order of the Gaussian, the lower the magnitude.
+
+So if you go to this is the in orange is the zero order.
+
+So that's just the original Gaussian. And then in in blue you have the first order.
+
+And then you see it's already the magnitude is a lot lower than the original Gaussian.
+
+And then the second order and that's actually the Laplacian. We don't even see it anymore.
+
+It's completely flat compared to the original notion. So that's a problem.
+
+We don't want to have this.
+
+So then people have actually show that the proper way to to use Gaussian derivatives is to actually use normalised Gaussian derivatives.
+
+And the way to normalise them is to multiply the empty derivative by sigma to the power m.
+
+So how should we normalise the Laplacian in this case? Yeah.
+
+My brother was killed by Sigma. Yeah.
+
+Yeah. Because the liberation is a second order image derivative.
+
+That means we have to multiply it with the sigma to the power two.
+
+And if we do that, then you see here in purple again that's the Laplacian.
+
+That's the normalised Laplacian.
+
+So he actually has really nice values compared with the original, uh, orange function and the other uh orders of a derivative of the Gaussian.
+
+So that's the way to properly use Laplace.
+
+And you should always use when you're losing operation, use the normalise operation with the correct sigma uh multiplier.
+
+So that's indeed here. Here's the Laplacian again in green.
+
+The second or the derivative across x and y. And then we multiply it with the sigma squared.
+
+And now there's a little theorem that tells us how to find blobs in the image using the Laplacian.
+
+And what it says is that the magnitude of the Laplacian responses will achieve a maximum or minimum at the centre of the blob,
+
+provided that the scale of the Laplacian is matched to the scale of the blob.
+
+Okay, that's a big, big story. Can somebody explain to me in words what exactly does it say?
+
+Yeah, there were boundaries. And in what way are the boundaries and the function flexible?
+
+It's kind of a boundary. It's on infinite. So we can find.
+
+Doing some minute, so maximum and minimal year refers to the magnitude of the operation.
+
+So what's the magnitude of allocation? Maybe somebody else wants to answer.
+
+I think you're answering all the questions. So I wanted to also hear other people.
+
+Sharing their thoughts. So, uh, going back to, to the answer we had here in the front.
+
+Uh, maximum and minimum refers to the magnitude of the Laplace, so refers to.
+
+Extrema values in the Laplacian.
+
+When I refer to when I say the magnitude of the magnitude of the Laplacian, I mean.
+
+How high or how low the allocation response is.
+
+So the value, the actual value that I get by filtering the image with this Laplacian is how high or how low that value is.
+
+Anyone else. We can tell or try to to say what this sentence tries to say.
+
+Is there something unclear in the text or is it.
+
+Ah, the worst is it don't make sense because now we can go word by word and try to explain it so we know what the Laplacian is.
+
+The magnitude refers to the values that the Laplacian has in the responses,
+
+and the response of the filtering operation, the magnitude of the operation responses.
+
+So that's the the how big or how low the values are after filtering with the Laplacian.
+
+Of caution. Okay.
+
+I'm waiting. Is it still unclear?
+
+This is just one sentence, right? Is it so impossibly clear to parse this sentence?
+
+Can just try to say something. It doesn't have to be the correct.
+
+I'm not grading you. I'm also not going to remember who said what.
+
+It has no no effect on on on your exam or on your grade if you say wrong things during the lecture.
+
+It's just to see if you're you're understanding things and then going in the right direction with with how you understand the, the content of the.
+
+I could also just read it for you and never ask questions, but then I don't know if, uh, if you would understand anything.
+
+Filled with size and full size. Yeah, yeah, yeah.
+
+That's that's exactly what is sentences in in very few words and very clearly it
+
+says that if I'm going to filter with deliberation and Gaussian that's a filter.
+
+Right. The second order derivative of a Gaussian, the filter size should match the blob size.
+
+And if they do match then I'm going to get an extreme response.
+
+So I'm going to get the minimum or maximum response at the centre of the blob.
+
+And that's how I find the blobs in the image. Yeah. Just to make sure I understand right now the obvious when you're trying to detect in an image.
+
+Yeah. Yeah. Exactly. So now we're, we're talking we we talked about we talked about edges.
+
+Right. Until this slide, we did a small recap about what our edges and how we can detect them.
+
+And now we're talking about detecting blobs. And that's sort of an edge in multiple directions.
+
+And we can use this Laplacian of a Gaussian to detect uh blobs.
+
+And then we have this this little theorem that tells us that, well,
+
+if the scale of the filter matches the scale of the blob, then we're going to get an extreme response.
+
+So we're going to find the blobs the centre of the blobs.
+
+Uh, the minimum or maximum responses after convolving with this, uh Laplacian of the Gaussian.
+
+So here's an example to visualise it. Here we have the the the blob again it's it's a cut through the blob in 1D.
+
+So it's just one bump here one ripple. And then here we have the the Laplacian responses with different scales.
+
+So there's different sigmas here on the x axis. Sigma is one sigma is two, sigma is four eight and 16.
+
+And then here's an unnormalised Laplacian response.
+
+And then what happens here is that the responses by convolving the image with this Laplacian
+
+they actually become a lot flatter as we increase sigma because we didn't normalise it.
+
+And that's the problem. We don't want to to use a normalised sigma.
+
+But then if we use the correctly normalised sigma on this in the second row,
+
+it's the same Laplacian responses by convolving with Laplace with different scales again.
+
+But then this doesn't flatten out as we increase the sigma.
+
+And then also what happens is, is that we get an extremum.
+
+So across all the sigma that we're looking at this has the lowest value.
+
+It's an extreme at the sigma equals eight for this blob.
+
+So that means that is the scale at which we can detect this blob.
+
+So the blob here. Went from -8 to 8, and this sigma was the best value we could find.
+
+We could have probably look for other sigmas, uh eight point uh two and eight for uh 7.9, and maybe those would have been even better matches.
+
+But within them, the values that we considered this was the best, uh, response we got.
+
+So this is the scale at which we should look for blob for this specific blob.
+
+Does this make sense so far? Yeah.
+
+Are there questions to this part? Yeah, we assume this is the actual size of the kernel maybe, or the amount of detail that you have.
+
+But it's worth it. That's actually an amazing question.
+
+And that's because these things are related to each other. So for example, if if I blur an image, I remove the details from the image.
+
+And that means that I can safely subsample it so I can reduce the number of pixels without losing image content information.
+
+So actually they're equivalent.
+
+So as I as I showed in the slide that I started with at the beginning of the lecture, let me see if I can go back to to be the cat.
+
+Um. Yeah.
+
+Uh, here. So actually this image is not a 200 by 200 pixels image is a 50 by 50 pixels image.
+
+I'm just displaying it on a 200 by 200, uh, canvas or pixel grid, but I haven't added any information by.
+
+Showing it on 200 by 200. It still contains exactly the same image information as a 50 by 50 pixel image, which is what it is.
+
+Um. So actually, the thing is, when you blur an image, you remove information from the image.
+
+And then you can. Because of the Nyquist Nyquist theorem, you can actually subsample your image.
+
+And that's there's a safe subsampling rate. That's that's given by the theorem.
+
+And that tells you like okay, because I removed the high frequency components from my image.
+
+Now I can subsample it without removing information,
+
+without dropping any information because it's already the information has been removed when I blurted.
+
+So now I can just reduce the spatial resolution of this image.
+
+So they're equivalent. Blurring an image and removing the number of pixels will have a similar effect.
+
+Well, both of them will reduce the information. Also note that this is not a reversible operation.
+
+So if I subsample my image to 50 by 50 pixels.
+
+If I then upscale it back to 200 by 200 pixels, it will not be the original image anymore because I have dropped the high frequency components,
+
+and even if I rescale it back to the original resolution, I cannot add back the information that I removed.
+
+I removed those, I threw them away when I, when I, uh, when I downscaled it, I removed all these this far away frequencies from the zero zero.
+
+So actually they are equivalent. You can think about blurring as a way of subsampling.
+
+And then the question is what grade do you choose to use to to draw your your image on.
+
+Does that answer the question? No, I think that. Even if you.
+
+Um. Skill.
+
+I was from there. Yeah. Yeah.
+
+Use space. Yeah. I could send images with different amounts of blur.
+
+Yeah. So I don't know if I should think of scale as the size of an image or its resolution, or the amount of blurring it has.
+
+So, so my my answer to you is that they are equivalent ways of looking at it.
+
+So if you'd say like if I look at an image as the number of pixels it contains,
+
+or I look at it as the number of high frequencies that it has, or equivalently, the blurring that they apply to it.
+
+They're equivalent definitions. Right. Because of this Nyquist theorem.
+
+That's that's the one that ties them together.
+
+The actual number of pixels with the number of frequencies, number of frequencies is the inverse of smoothing.
+
+Right. So like if I smooth then I remove frequencies. Um so.
+
+If I say scale, I mean either of these two definitions, I mean.
+
+Either you think about the number of pixels, or you think about how smooth your images and and how a few high frequencies it contains.
+
+It's it's all the same. It's it's equivalent with each other.
+
+So we know how to find, uh uh uh uh, blobs with this, this little theorem that tells us it's not an extreme response if we are using,
+
+uh, Laplacian of the, uh, scale match to the the scale of the blob.
+
+And now I'm going to go back to the very first slide that we had or one of the first slides, the second slide.
+
+And that was that. I want to find a magic way that tells me at which scale to look at the part in an image.
+
+And that's true, right? So now I have a way. I have this magic way.
+
+I know that, for example, for this fish, I should probably use a population of 100 over sigma equals 100.
+
+And for this, this tiny fish here, I should probably use a Laplacian with a sigma of one, and so on and so forth.
+
+Right. So I have all these fish. And for each one of them I know I should use a different, uh, scale of the Laplace.
+
+Um, so here I'm, I'm actually, I, I coded this myself.
+
+Um, I'm computing the Laplacian responses over this sunflower field, and every circle is a,
+
+uh, extremum response or maximum or minimum response in, uh, this Laplacian, uh, space.
+
+So the I convolve the image with uh Laplacian Gaussian.
+
+Then I get the minimum and the maximum values. Oops sorry.
+
+Uh I get the minimum and the maximum values. And then I draw a circle at the location where the minimum or the maximum is,
+
+and the radius of the circle is proportional to the sigma of the Laplacian values.
+
+And now what you see is that I get some of the sunflowers here in the back quite nicely.
+
+But here in the front I only get the corners of the petals of this flower so I don't get the full sunflower.
+
+And now I can also change my sigma and I can use a very big sigma.
+
+And then all of a sudden I get some sunflowers here in the front, which is really great,
+
+but this makes completely no sense for the sunflowers in the back because those need a way smaller.
+
+Uh, sigma. So now the question is the sigma is the parameter that controls the scale of my Laplacian.
+
+I want this to be matched to the size of the blob.
+
+So in my case the size of the sunflowers to be able to detect my sound flowers.
+
+But how do I make sure that I detect all my sunflowers because they have multiple scales?
+
+So what can I do? Yeah.
+
+When you try something like that, the further up you go in the picture. Change the state.
+
+Because I don't know which ones are bigger. Mhm.
+
+Yeah. Yeah I could, I could try to, to use a whole range of, of,
+
+of uh sigmas and say I'm going to start with bigger sigma and then uh lower Sigma in the back.
+
+But what if I gave you an image and I wouldn't tell you what the images and I would tell you, okay.
+
+Write an algorithm that on any test image I give you, it will find the blobs.
+
+Right? So now you have this solution for this specific sunflowers.
+
+But maybe then, you know, I'll give you an image with a fish of different sizes or cars being parked on a road,
+
+uh, uh, being far away from the camera and close to the camera.
+
+And then I tell you, okay, give me an algorithm.
+
+Right. Uh, piece of code that can find all the the the the cars or all the fish.
+
+Yeah. Did you use the movie poster to save mustard?
+
+I could use the main. I could definitely try that.
+
+And what would that do if I use the mean, for example, here on the sunflowers.
+
+Maybe if I was to kind of.
+
+Yeah, well, detect the sunflowers that are here in the middle of the image, like average sized sunflowers, but it will miss completely the ones here.
+
+We just detect some petals here in the front and nothing in the back.
+
+Yeah, I think it's in line with. With generative skills from existing models and the other way around.
+
+And we would use multiple of them on the image.
+
+Capture all of the samples. Yeah yeah yeah indeed.
+
+But then you wouldn't you would use it for location in the image or how would you use it.
+
+We use this. Exactly. Yeah.
+
+The flowers in the very back will be from, uh.
+
+There will be or be able to detect them, but we'll be able to detect going to the very front very well.
+
+Yeah. We can. Increase the supply for the people who care for the poverty, but not.
+
+We mean the same algorithm. And we generated different, uh, like different scales that we could apply over images in our.
+
+Come combine. Yeah, that's that's amazing. You just reinvented skill spaces.
+
+Yeah. So that's exactly the answer to how to do this is to use a range of, of sigma values.
+
+And for that you have to, um, create the skill space.
+
+Um. So what you suggested is it's intuitively it's it's shown in this picture.
+
+So you said, like, I'm going to take my images and I'm going to blur them with Gaussians with different sigma.
+
+So here I have sigma. Here I have alpha times sigma alpha squared times sigma.
+
+And then I have a range of, of Gaussian uh scales of image scales.
+
+Sorry. And then I'm going to detect with the Laplacian I'm going to detect uh blobs at all this scale.
+
+So I'm going to find here the very small sunflowers.
+
+And here in the from the very big sunflowers using this, this algorithm.
+
+Um. Yeah.
+
+And this is actually what a skill space is, but it's a bit more formal.
+
+So people in in computer vision literature they've created with this, they created this, this algorithm.
+
+Um, and what it does is it creates octaves, multiple octaves.
+
+A bit like like in music. And every octave actually, um, takes an image and blurs it with increasing values of sigma with this formula.
+
+So the, the Cate, uh, layer in this, uh, uh, scale space, octave is alpha to the power k times sigma zero.
+
+So that's the, the, the initial sigma that I chose.
+
+And then they resize the image to half. They reduce the number of pixels to half.
+
+And then they do the same process again from sigma zero to sigma k.
+
+Blur increasingly the images and do this again.
+
+So typically I think they would use 3 to 5 octaves of of an image to create a full scale space and then over the scale space.
+
+Apply this Laplacian convolution at every single level in the scale space, and then find all the the the extrema responses of the Laplacian.
+
+So all the minimum and maximum points um of the Laplacian.
+
+But now I have to go back a bit to the, um, the formulation.
+
+So here, if I, if I use this, this, uh, scale spaces, I blur the image with,
+
+with the sigma values, I can compute the, um, the Laplacian, uh, at every, uh, image.
+
+So I can compute the Laplacian responses at every level in, in the scale space.
+
+But there's actually a way more efficient way to do this because computer science people are obsessed with efficiency.
+
+So they're obsessed with designing algorithms that work faster and faster and faster.
+
+And then they were like, well, if I look at the Laplacian function, I know it's a second order derivative.
+
+Um. And I can approximate this. It just so happens that I can approximate this with the difference of Gaussian.
+
+So here I have plotted the location function in 1D in green.
+
+And then the difference of Gaussians in red. And the difference of Gaussians is actually oops.
+
+It's actually just taking the difference of two Gaussian functions with different uh with different sigma values.
+
+So if I, if I take two Gaussians and I have one sigma and alpha times sigma and I subtract them from each other,
+
+then I get a function that's almost identical to the second order derivative of a Gaussian.
+
+And why is this efficient? Why? Why does this help me for?
+
+For my skill space is to find the locations. So.
+
+Okay. This is nice okay. There's an approximation with this difference of Gaussian.
+
+So what. Why do I care about this. Yeah it makes.
+
+But why does it make it more efficient? It's less.
+
+Well, I'm the Laplacian of a Gaussian as a fixed formula.
+
+I don't necessarily. Uh. If I compute two Gaussians and I subtract them from each other is also a formula that I have to apply.
+
+So I create a filter that defines this difference of Gaussians.
+
+Or I create the filter that defines the the location of a Gaussian.
+
+It's both filters, right? Yeah.
+
+I'm just wondering, do you use this? Image every day.
+
+Cartoons independently. Like you. And find them.
+
+What? What do you mean? No, I don't think. You can if you want.
+
+You can explain it a bit more and then we can think about it. Well, I use the other approach, but this is dependent on the integer values.
+
+In what way? I mean, before the image values.
+
+I'm not sure I understand. What do you mean by dependent on the image values?
+
+Can you recommend using an image?
+
+Yeah. In the image? Yeah.
+
+Of course. Yeah. Then you can compute the derivative of God like the dog with any margins regardless of image.
+
+Because you can make. Two versions with different sequels.
+
+Yeah. Yeah, but did I need to?
+
+So in order to define the filter I typically don't need the image.
+
+Right. So like if I want to compute an edge in an image then the filter doesn't change because the image has changed.
+
+It's still an edge detector filter. Uh, the thing that does depend on the image right now is my my sigmas.
+
+Right? So if I want to find the big flowers, I need the big sigma.
+
+If I want to, uh, find the small flowers, I need a small sigma.
+
+So in that sense, that does depend on the image.
+
+But you just proposed that we use a whole bunch of ranges of sigma, so it actually doesn't depend on the image.
+
+Again, because we just go over all possible sigmas. Right. We just uh, go from sigma equals one to sigma equals 16 or 20 or whatever.
+
+And then we just, uh, try all the values on the image.
+
+So then hopefully we get all the blob sizes in the image.
+
+But then going back to to my question. Why would I want to approximate a Gaussian with a difference of Gaussians?
+
+Oh, sorry. A Laplacian with the difference of Gaussians. I think about what we have, what we're building.
+
+We're building an algorithm right now. We have an image.
+
+We blurred it with increasing values of sigma. We created this, uh, scale space.
+
+And now we want to find the. We want to find the blobs.
+
+All the blobs we can find in the image. Okay.
+
+It's. It's okay. It's okay. Time's up.
+
+Yeah. Is this your or not? Yeah.
+
+So? So in in the difference of Gaussians we would use.
+
+Uh, k times alpha minus. Uh, so a Gaussian with k times alpha and a Gaussian with k uh alpha to the power k minus one.
+
+Times. Uh, sigma. All right. So so you have to two consecutive skills in your, your your, uh, skill space.
+
+For the dog. If I if I'm considering the dog, then it would be like this.
+
+Minus this. Right? I think you're you're getting there.
+
+So there was like a good skin to the right direction.
+
+So I have a scale space which is the image blurred with different Gaussians with different segments.
+
+And the dialogue is the difference of Gaussians.
+
+It's a kernel that computes the difference of Gaussians. And there's this theorem that says that I can either convolve the image with my dog,
+
+or I first can blur my image and then compute the the the differences.
+
+No thoughts. Yeah. So I think I think both both.
+
+What do you think of this one more?
+
+Yeah. One more. Subtracted from another budget.
+
+Where are my Gaussians? Here. So when I computed the scale space.
+
+How did I do that? We just came home from work.
+
+Yeah. So I, I blurred my my convolved my, my image with a whole bunch of Gaussians.
+
+Right. So my Gaussians are already in the scale space.
+
+Yeah. So then I actually don't have to to re blur it to compute the Laplacian.
+
+I already have it. The only thing I have to do is I have to compute differences between nearby scale.
+
+So I do this one minus this one, this one minus this one, this one minus this one.
+
+And that already gives me the Laplacian responses or an approximation of the Laplacian responses.
+
+So I don't have to anymore go for every single one of these images in my scale space,
+
+and convolve it with the second order derivative of the Gaussian.
+
+With the Laplacian,
+
+I can just take these differences pixel wise differences between these images and in the in the pyramid between the lower and the next,
+
+the next and the next just pairwise differences. And that will give me already this this response is a different sketch.
+
+So you see here the uh, the, the lowest uh, the yeah, the lowest scales, the, the lowest Sigma.
+
+You have a lot of details and a, the highest sigma you have like just big white dots where the flowers in the background.
+
+So this will already approximate very efficiently the, uh, the um, derivative of uh.
+
+The second derivative of a Gaussian, the Laplacian. So how do I actually now find my blobs in the image.
+
+So I computed. Now I have this this scale space of responses right.
+
+I have all these dislocation approximations over my my image, and now I want to get my blobs out.
+
+What do I do? Yeah.
+
+We have a version with 2.0. Uh, no, it would collapse.
+
+Because if you think of the Gaussian formula. Sorry.
+
+Uh, no. So actually you cannot define, uh, Gaussian with sigma zero, because if you think of the actual equation of the Gaussian, you divide by sigma.
+
+So you have like one over two sigma squared and that would become infinity.
+
+Right. So it's actually undefined. So.
+
+So in order to find all of the details of different scales, we would subtract.
+
+About Scarum images with the big sequences from, uh, those with strong sequence and you would get.
+
+Different funding, different kinds of options. Uh, I think the difference between the, uh, the images is a good direction to thinking into.
+
+But I want to give you a little hint. And that is this, this, um, theorem that we had on how to find the the blobs.
+
+Right. So now we have a scale space.
+
+We have an approximation of all the the Laplacian responses in the scale space.
+
+That's the black and white images on on the left side.
+
+And now I want to get all my blobs out. Yeah, I can just do that from the image.
+
+The maximum is the maximum of the application.
+
+Explain. What do you mean by that? So I'm going to go back to the the image with the responses.
+
+Yeah. I mean the the difference is it gives you.
+
+Yeah. So this gives you an approximation of the operational responses over this image.
+
+Right. With different sigmas. So we have now a sort of like a scale space of Laplace responses.
+
+Every layer is a different, uh, size of Laplace in response.
+
+And now how do I find my blobs? Yeah.
+
+Long. Uh, in our skills base and, uh, more than just, like, my clothing.
+
+Mhm. I think that's. And the maximum minimum value of what?
+
+Oh. My personal opinion regarding the maximum and minimum value in this image across all the pixels in the image.
+
+Is that what you mean? Yeah. But then I'm going to just get one number, right?
+
+I'm only going to get one blob. It's going to be like, this is my my one blob.
+
+It's it's that, that's that's present. The name is I'm only going to get one sunflower.
+
+I heard. Said the principal. For the.
+
+Mhm. Yeah. Well we want to find. So we want to find all the flowers right.
+
+So these flowers are located next to each other.
+
+Okay, so there are two.
+
+I'm going to already give you the interest of time, give you the answer, but I think you're thinking in the right direction, but not yet there.
+
+So here it's the maximum across scales, right?
+
+So I look at sigma one, sigma two, sigma four, sigma eight, sigma 16.
+
+And then I pick the the blob that gives a maximum across all these scales.
+
+So that translates if I go back to my hierarchy of of responses that translates to the maximum across scales here.
+
+Right. So in the hierarchy I have to take the maximum across layers.
+
+But then I also want to take the maximum spatially between the pixels in my local neighbourhood because I want to find flowers.
+
+In the whole image. I don't want to find one flower here. I want to find all these flowers.
+
+I'm going to say, okay, I'm going to look in a neighbourhood here, find the maximum in a neighbourhood here, find the maximum.
+
+And then over the whole image, keep the maximum within a neighbourhood and then across neighbour.
+
+So left or right of my current pixel but also across scale.
+
+So top down. And that's actually what's done in practice.
+
+So if this is your scale space here's one sigma value.
+
+Here is other sigma values increasing.
+
+Then for one pixel you look at the the surrounding pixels, but you also look at the pixels on top and the pixels below.
+
+And you say, is this a maximum value. And if it's a maximum value, then I keep that.
+
+And that's how we find the blobs in the image.
+
+And then for example, the example with the sunflowers, this is what it would actually end up looking like.
+
+So you have a lot of small blobs in the background. Then you have bigger blobs in the middle and even bigger blobs in the front.
+
+And then you have found all the blobs in the image at all the scales that they were present that.
+
+Any questions? Yeah.
+
+So we're thinking of doing right thing by covering over duty, and we look at each bag of David.
+
+Or that should be trying to find the local maximum, uh, skills in our skill space.
+
+So, so we look at, uh, neighbours within uh, uh, three by three neighbourhoods, for example.
+
+That's what they use in practice. Yeah, exactly.
+
+And, and then indeed, you look at its left right neighbours, top and down neighbours.
+
+And then if your value is bigger than all your neighbours value, then that means you are in the centre of the block.
+
+So this pixel here is at the centre of the blob and the other pixels are not.
+
+And then we keep that pixel and we don't keep the others.
+
+And then what's shown here is all the centre of the.
+
+All the circles are centre on a maximum, and the size of the circle is proportional to the sigma at which it was found in that layer.
+
+So this one was found in a layer with a very large sigma, and this one was found in a layer with a very small sigma.
+
+Any other questions? No.
+
+Then, uh. For comparing the layers.
+
+It's got different layers. It's comparing both layers.
+
+So that's comparing across scale but also across neighbour.
+
+So it's also. So it's comparing layers with each other and comparing pixels with with with its uh neighbouring pixels.
+
+Yeah. Any other questions?
+
+No. Then that was it. Um, for the next time, we're going to talk about how to describe this.
+
+These blobs, once we found them. So we found all the blobs, but we don't know how to describe them, to find them back in another image.
+
+And that's going to be in the next lecture.
