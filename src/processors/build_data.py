@@ -1,5 +1,5 @@
 from typing import List, Dict
-from embedding import embed_single
+from src.core.embedding import embed_single
 
 def build_transcripts(lines: List):
     """

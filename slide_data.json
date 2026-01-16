@@ -1,4 +1,29 @@
 {
+  "1": {
+    "slide_content": "Computer Vision\n\nScale spaces\n\nSilvia Pintea",
+    "transcripts": [],
+    "transcript_count": 0
+  },
+  "2": {
+    "slide_content": "## Scale spaces: Reading material\n\n- Article :\n- Lindeberg, Tony. \"Scale-space.\" (2009): 2495-2504.\n- https://www.diva-portal.org/smash/get/diva2:441147/ FULLTEXT01.pdf\n- UvA tutorial on scale-space:\n\nhttps://staff.fnwi.uva.nl/r.vandenboomgaard/IPCV20172018/ LectureNotes/IP/ScaleSpace/index.html\n\n- Prof. Kristen Grauman slides: https://www.cs.utexas.edu/ ~grauman/courses/378/slides/lecture13\\_full.pdf",
+    "transcripts": [],
+    "transcript_count": 0
+  },
+  "3": {
+    "slide_content": "## Find objects across images\n\n- How would you describe an object in an image? e.g. which features can you use?\n\n<!-- image -->\n\n<!-- image -->\n\n<!-- image -->",
+    "transcripts": [],
+    "transcript_count": 0
+  },
+  "4": {
+    "slide_content": "## Find objects across images\n\n- How would you describe an object in an image? e.g. which features can you use?\n- Will this work? Why yes/no?\n\n<!-- image -->",
+    "transcripts": [],
+    "transcript_count": 0
+  },
+  "5": {
+    "slide_content": "## Scale\n\nWhat do I mean by \"scale\"?\n\nWhere do we deal with multiple scales?",
+    "transcripts": [],
+    "transcript_count": 0
+  },
   "6": {
     "slide_content": "## Scale\n\nWhat do I mean by \"scale\"? Where do we deal with multiple scales?\n\n<!-- image -->",
     "transcripts": [
@@ -23,6 +48,11 @@
     ],
     "transcript_count": 18
   },
+  "7": {
+    "slide_content": "## High / low scale\n\nWhat information do we have at high scale and not at low scale?",
+    "transcripts": [],
+    "transcript_count": 0
+  },
   "8": {
     "slide_content": "## High / low scale\n\nWhat information do we have at high scale and not at low scale?\n\n<!-- image -->",
     "transcripts": [
@@ -34,30 +64,10 @@
     ],
     "transcript_count": 5
   },
-  "42": {
-    "slide_content": "## Scale\n\nA \"magic\" way to find the correct scale at which to analyze each part of an image\n\n<!-- image -->",
-    "transcripts": [
-      "so that's the part we would use. we lose when when we, , downscale images, we lose the high frequency details of the image.",
-      "so when we talk about scale, i said,",
-      "we want to find some magic way that would tell us at which scale to look at at different parts of, of this image.",
-      "so for example, there's different parts that help us recognise this specific dark,",
-      "in this image and then, , localise it back and in the other image.",
-      "and now there is a magic way. luckily, otherwise we wouldn't be here talking about it.",
-      "there is a magic way to talk about to find the correct scale at which to look at an image.",
-      "and that is using image derivatives.",
-      "so this is a bit of a warning. we're going to talk about image derivatives in this lecture a lot.",
-      "and we're going to i'm going to try to slowly build it up.",
-      "it's it's all the same. it's it's equivalent with each other.",
-      "so we know how to find, , blobs with this, this little theorem that tells us it's not an extreme response if we are using,",
-      "laplacian of the, , scale match to the the scale of the blob.",
-      "and now i'm going to go back to the very first slide that we had or one of the first slides, the second slide.",
-      "and that was that. i want to find a magic way that tells me at which scale to look at the part in an image.",
-      "and that's true, right? so now i have a way. i have this magic way.",
-      "i know that, for example, for this fish, i should probably use a population of 100 over sigma equals 100.",
-      "and for this, this tiny fish here, i should probably use a laplacian with a sigma of one, and so on and so forth.",
-      "right. so i have all these fish. and for each one of them i know i should use a different, , scale of the laplace."
-    ],
-    "transcript_count": 19
+  "9": {
+    "slide_content": "## High / low scale\n\nWhat information do we have at high scale and not at low scale?\n\n<!-- image -->",
+    "transcripts": [],
+    "transcript_count": 0
   },
   "10": {
     "slide_content": "## Scale\n\nA \"magic\" way to find the correct scale at which to analyze each part of an image\n\n<!-- image -->\n\nFind blobs = keypoints / interest points.",
@@ -83,21 +93,15 @@
     ],
     "transcript_count": 18
   },
-  "14": {
-    "slide_content": "## Recap: Edge detection\n\n- What causes an edge in an image?\n\n<!-- image -->\n\n<!-- image -->\n\nEdges are changes or discontinuities in brightness or color.\n\n- What mathematical operator detects rapid changes in a signal?",
-    "transcripts": [
-      "can you explain it or i really don't know what what this this function does.",
-      "can you re-explain it? .",
-      "but before we we talk about image derivatives, i have to get you back to the edge detection,",
-      "because this is where the whole story about image derivatives starts.",
-      "and you've done already a bit on edge detection.",
-      "so, for example, if you have a greyscale image going from, , lighter grey to a darker grey or to black, but you can also have changes in colour.",
-      "so going from blue to red or from green to, to purple. and that would also cause an image.",
-      "so these are discontinuities in colour and brightness.",
-      "and there is a mathematical operator that helps us detect these rapid changes in a signal.",
-      "so there is a mathematical operator that people can use to detect changes."
-    ],
-    "transcript_count": 10
+  "11": {
+    "slide_content": "## Scale\n\nA \"magic\" way to find the correct scale at which to analyze each partofan de\n\n<!-- image -->\n\nFind blobs = keypoints / interest points.",
+    "transcripts": [],
+    "transcript_count": 0
+  },
+  "12": {
+    "slide_content": "## Recap: Edge detection\n\n- What causes an edge in an image?\n\n<!-- image -->\n\n<!-- image -->",
+    "transcripts": [],
+    "transcript_count": 0
   },
   "13": {
     "slide_content": "## Recap: Edge detection\n\n- What causes an edge in an image?\n\n<!-- image -->\n\n<!-- image -->\n\nEdges are changes or discontinuities in brightness or color.",
@@ -114,21 +118,34 @@
     ],
     "transcript_count": 9
   },
-  "33": {
-    "slide_content": "## Noisy edge detection\n\n<!-- image -->\n\n<!-- image -->\n\n⊛\n\n2\n\n2\n\nh\n\n(\n\nx\n\n,\n\ny\n\n)\n\n∂\n\nx\n\n∂\n\n<!-- image -->\n\n<!-- image -->\n\n<!-- image -->\n\n⊛\n\nh ( x , y ) ∂ 2 y ∂ 2\n\n<!-- image -->",
+  "14": {
+    "slide_content": "## Recap: Edge detection\n\n- What causes an edge in an image?\n\n<!-- image -->\n\n<!-- image -->\n\nEdges are changes or discontinuities in brightness or color.\n\n- What mathematical operator detects rapid changes in a signal?",
     "transcripts": [
-      "and then if i take the the first order image derivative then it will look this.",
-      "so we'll have an extrema a minimum here at this edge and a maximum here at this edge.",
-      "so those are the two edge points the extrema. and there's a way to approximate this, this first or the derivative.",
-      "and i think you've already used it in the, the, , edge detection lecture.",
-      "but if you think about it, just in mathematics, that's also an option.",
-      "we have now again, our, , input image. and we again take a line through this input image.",
-      "and we have again the , values that have high intensity going to low intensity.",
-      "and we want to find the edge. now there is a second manner to find the edges in the image.",
-      "the first one was to compute the first order image derivatives.",
-      "and that would give us the extrema. so that would give us a minimum and a maximum here."
+      "can you explain it or i really don't know what what this this function does.",
+      "can you re-explain it? .",
+      "but before we we talk about image derivatives, i have to get you back to the edge detection,",
+      "because this is where the whole story about image derivatives starts.",
+      "and you've done already a bit on edge detection.",
+      "so, for example, if you have a greyscale image going from, , lighter grey to a darker grey or to black, but you can also have changes in colour.",
+      "so going from blue to red or from green to, to purple. and that would also cause an image.",
+      "so these are discontinuities in colour and brightness.",
+      "and there is a mathematical operator that helps us detect these rapid changes in a signal.",
+      "so there is a mathematical operator that people can use to detect changes."
     ],
     "transcript_count": 10
+  },
+  "15": {
+    "slide_content": "## Recap: Edge detection\n\n<!-- image -->\n\nWhere are the edges?",
+    "transcripts": [
+      "anything said that? got you confused or.",
+      "i went to fast over. no.",
+      "then we go on and that's something that, , was referred to or mentioned just just a bit ago.",
+      "and that was another way of detecting the edges. so.",
+      "we have now again, our, , input image. and we again take a line through this input image.",
+      "and we have again the , values that have high intensity going to low intensity.",
+      "and we want to find the edge. now there is a second manner to find the edges in the image."
+    ],
+    "transcript_count": 7
   },
   "16": {
     "slide_content": "## Recap: Edge detection\n\n<!-- image -->\n\nFrom Fei-Fei Li\n\n- What is a good approximation of a derivative?",
@@ -140,6 +157,180 @@
       "so now we're talking about the first order image derivative right."
     ],
     "transcript_count": 5
+  },
+  "17": {
+    "slide_content": "## Recap: Edge detection\n\n<!-- image -->\n\nFrom Fei-Fei Li\n\n- What is a good approximation of a derivative?\n\n<!-- formula-not-decoded -->\n\n- Finite differences: ∂ f ( x ) f ( x + ϵ ) -f ( x )",
+    "transcripts": [],
+    "transcript_count": 0
+  },
+  "18": {
+    "slide_content": "## Recap: Edge detection\n\n<!-- image -->\n\nFrom Fei-Fei Li\n\n- What is a good approximation of a derivative?\n- How can I implement finite differences efficiently?\n- Finite differences: ≈ ∂ f ( x ) ∂ x f ( x + ϵ ) -f ( x ) ϵ",
+    "transcripts": [
+      "would it help us find that the changes in the image. if we smooth the image.",
+      "any other thoughts? what filter would we use? no.",
+      "so i'm going to try to build it up from just saying that in mathematics, when you have,",
+      "for a certain derivative, you can approximate it with finite differences.",
+      "so here's the partial, , derivative of f to x.",
+      "so that's differences of neighbouring pixels. and that's how we can approximate the finite difference.",
+      "so now i'm going to go back to to my previous question.",
+      "how would you then write this with with a convolutional filter?",
+      "given that how you can approximate the first derivative, that we're working over images that get values over pixel values.",
+      "what would be the filter that we can use to compute the first order image derivative?",
+      "we did with the the finite difference is it approximates the first image derivative.",
+      "what would be a filter that approximates a second order image derivative.",
+      "thank you. it's your. so maybe maybe that's a good exercise for for all of you.",
+      "if you have a piece of paper or just your laptop open. , you could just compute twice the finite differences between four pixels.",
+      "so you have x0, x1, x2, x3. and then you compute the finite differences between these four pixels once.",
+      "so then you have x zero minus x1x1 minus x2x2 minus x stream.",
+      "that's the first image derivative. and then apply it again on the second one.",
+      "exactly. . , exactly.",
+      "that's. that's the kernel. , it's it's it's obvious.",
+      "right. it's exactly what you get if you compute finite differences twice over the pixels you get, you get exactly that kernel.",
+      "going back to our.",
+      "so indeed, if you want to compute finite differences, you can approximate, , if you want to compute the second order derivative to find them,",
+      "the location of the edges, you can actually approximate the second order derivative with kernels that look this one minus to one.",
+      "and that will give you the. the second order etched into the x direction.",
+      "and then if you transpose this kernel, it will give you the second order derivative in the y direction.",
+      "again, is there a problem with this kernel? if we just apply this over the image."
+    ],
+    "transcript_count": 26
+  },
+  "19": {
+    "slide_content": "## Recap: Edge detection\n\n<!-- image -->\n\n?\n\n<!-- image -->\n\n<!-- image -->\n\n?\n\n<!-- image -->",
+    "transcripts": [],
+    "transcript_count": 0
+  },
+  "20": {
+    "slide_content": "## Recap: Edge detection\n\n<!-- image -->\n\n⊛\n\n[\n\n]\n\n<!-- image -->\n\n<!-- image -->\n\n<!-- image -->\n\n⊛\n\n[\n\n]\n\n<!-- image -->\n\n<!-- image -->",
+    "transcripts": [],
+    "transcript_count": 0
+  },
+  "21": {
+    "slide_content": "## Recap: Noisy edge detection\n\nf(c)\n\n<!-- image -->\n\n<!-- image -->\n\nFrom Fei-Fei Li\n\n- Why does this happen?",
+    "transcripts": [
+      "are you sick of me? and then some of the.",
+      "and we should maybe consider the bigger picture. i don't know how that would translate into function.",
+      "it's actually quite, quite an insightful answer.",
+      "it's it's because there's noise in the image and the noise will actually get amplified when computing this, this differences with the neighbours.",
+      "and we want to look at a scale this this bigger than the noise to be able to find the edge back."
+    ],
+    "transcript_count": 5
+  },
+  "22": {
+    "slide_content": "## Recap: Noisy edge detection\n\n<!-- image -->\n\n⊛\n\n[\n\n]\n\n<!-- image -->\n\n<!-- image -->\n\nHow can we fix this?\n\n<!-- image -->\n\n<!-- image -->\n\n⊛\n\n<!-- image -->\n\n[\n\n]\n\n<!-- image -->",
+    "transcripts": [
+      "and a lot of edges have been, , removed or are not clear anymore.",
+      "so i wonder, how can i fix this? do you have any thoughts?",
+      "crazy. gaussians. remove noise.",
+      "very good. yes. exactly. yes. yes, indeed.",
+      "so gaussians remove noise. and that's something that you have to keep in mind for the rest of your lives."
+    ],
+    "transcript_count": 5
+  },
+  "23": {
+    "slide_content": "## Recap: Noisy edge detection\n\nFirst smooth then take the image derivative\n\n<!-- image -->\n\nFrom Fei-Fei Li",
+    "transcripts": [
+      "there is this. this filter is minus one plus one.",
+      "compute edges in the image and they are approximate first order image derivatives.",
+      "so now. imagine that you have a noisy signal, so imagine your image is noisy.",
+      "so here is not a smooth signal anymore. but there was some noise added to it.",
+      "and now i compute the image derivative.",
+      "i can compute it with this approximation with the filter that i showed you just now, the one minus one.",
+      "and then i get the whole bunch of noise out and i lose where the edge is more or less just everything becomes extremely noisy.",
+      "i had to first go over the image, smooth it with with the smoothing filter,",
+      "and then go again over the image with the derivative filter and compute the first order derivatives.",
+      "and now i can do that in one step by just going over the image with the derivative of a gaussian filter, and be done.",
+      "just one step up processing. so indeed it's a lot more efficient.",
+      "and this is the example. and then the noisy image just to show you.",
+      "so here i computed the derivative of the gaussian on the x direction and the derivative of the gaussian in the y direction.",
+      "and then here are the results for the noisy image. so i use here a sigma of three pixels."
+    ],
+    "transcript_count": 14
+  },
+  "24": {
+    "slide_content": "## Derivative of convolution theorem\n\n<!-- formula-not-decoded -->\n\n- What does this say?",
+    "transcripts": [
+      "and then we can take the the first order derivative.",
+      "so that gives us a big a maximum where the edge was.",
+      "and that's a lot cleaner. but we can do this also in a more efficient way.",
+      "and for that, i have to talk about this derivative of convolution theorem.",
+      "can somebody tell me what what is this ugly equation here says?",
+      "in words. how do i translate this this equation in in words.",
+      "it's also a good, , , skill to learn, to be able to look at the formula and say, what does it say in words?",
+      "can you read it? so what's on the purple side?",
+      "derivative of. h. and, , this is a convolution.",
+      "so what does the purple side say again? you're almost got it right.",
+      "but the derivative of convolution. so it's the derivative of the image convolution with the gaussian filter."
+    ],
+    "transcript_count": 11
+  },
+  "25": {
+    "slide_content": "## Derivative of convolution theorem\n\n<!-- formula-not-decoded -->\n\n- What does this say? Derivative of convolution = convolution with derivative\n- •\n\n<!-- image -->\n\nFrom Fei-Fei Li",
+    "transcripts": [
+      "derivative of. h. and, , this is a convolution.",
+      "so what does the purple side say again? you're almost got it right.",
+      "but the derivative of convolution. so it's the derivative of the image convolution with the gaussian filter.",
+      "right. instead the smoothing, the derivative of the smoothed image here on the purple side, and then on the green side.",
+      "what? what do i have on the green side? ."
+    ],
+    "transcript_count": 5
+  },
+  "26": {
+    "slide_content": "## Noisy edge detection\n\n<!-- image -->\n\n<!-- image -->\n\n⊛\n\n∂\n\nh\n\n(\n\nx\n\n,\n\ny\n\n)\n\n∂\n\nx\n\n<!-- image -->\n\n<!-- image -->\n\n<!-- image -->\n\n⊛\n\n∂\n\nh\n\n(\n\nx\n\n,\n\ny\n\n)\n\n∂\n\ny\n\n<!-- image -->",
+    "transcripts": [
+      "and this is the example. and then the noisy image just to show you.",
+      "so here i computed the derivative of the gaussian on the x direction and the derivative of the gaussian in the y direction.",
+      "and then here are the results for the noisy image. so i use here a sigma of three pixels.",
+      "and you can see that the details on the apron are actually a bit more visible than they used to be,",
+      "and some of the edges have become a lot more visible than in the noisy image."
+    ],
+    "transcript_count": 5
+  },
+  "27": {
+    "slide_content": "## Noisy edge detection\n\n<!-- image -->\n\n<!-- formula-not-decoded -->\n\n<!-- image -->\n\n<!-- image -->\n\n<!-- formula-not-decoded -->\n\n<!-- image -->",
+    "transcripts": [],
+    "transcript_count": 0
+  },
+  "28": {
+    "slide_content": "## Edge detection\n\n<!-- image -->",
+    "transcripts": [],
+    "transcript_count": 0
+  },
+  "29": {
+    "slide_content": "## Edge detection\n\n<!-- image -->\n\nFrom Fei-Fei Li\n\n- How can I take a second order image derivative?",
+    "transcripts": [
+      "what would be the filter that we can use to compute the first order image derivative?",
+      "and it's. so what does this say?",
+      "this is the function at the value x plus epsilon minus the function of the value x.",
+      "so as i said before, this in images would become neighbouring pixels.",
+      "so if i want to subtract neighbouring pixels from each other, what filter would i use?",
+      "and then these points here they're called the zero crossing of the the filter responses.",
+      "and that's where you can find the edges as by taking the second order image derivative.",
+      "so there are two ways in which you can compute image derivatives.",
+      "sorry in which you can detect edges. so now i'm going to ask you how can i take a second order image derivative.",
+      "so we talked about first order image derivatives. that's.",
+      "by approximating it with this this, , minus one one or just computing the derivative of a gaussian filter.",
+      "but now, over the course of."
+    ],
+    "transcript_count": 12
+  },
+  "30": {
+    "slide_content": "## Edge detection\n\n<!-- image -->\n\nFrom Fei-Fei Li\n\n- How can I take a second order image derivative?\n- Convolve with . Is there a problem with this? [1, -2, 1]",
+    "transcripts": [
+      "that's that's that's a very good insight indeed. so if you want to obtain a second ordinary, what if you take a first started derivative twice.",
+      "and do you maybe know how would the filter look if you were going to do this with the filter,",
+      "we did with the the finite difference is it approximates the first image derivative.",
+      "what would be a filter that approximates a second order image derivative.",
+      "thank you. it's your. so maybe maybe that's a good exercise for for all of you.",
+      "that's another pixel. and then we have x2 minus x3.",
+      "there's another pixel. i should add one more x4. and then i have.",
+      "x three minus x four. and now i'm going to take the.",
+      "i'm going to take the second order image derivative by taking again a derivative over these pixels.",
+      "so second. order derivative.",
+      "so that's going to give me. x0 minus x1 minus.",
+      "x1 minus x2. then i'm going to have the second pixel."
+    ],
+    "transcript_count": 12
   },
   "31": {
     "slide_content": "## Second order derivative\n\n<!-- image -->\n\n- Convolve with the 2nd order Gaussian derivative.",
@@ -200,168 +391,6 @@
     ],
     "transcript_count": 53
   },
-  "18": {
-    "slide_content": "## Recap: Edge detection\n\n<!-- image -->\n\nFrom Fei-Fei Li\n\n- What is a good approximation of a derivative?\n- How can I implement finite differences efficiently?\n- Finite differences: ≈ ∂ f ( x ) ∂ x f ( x + ϵ ) -f ( x ) ϵ",
-    "transcripts": [
-      "would it help us find that the changes in the image. if we smooth the image.",
-      "any other thoughts? what filter would we use? no.",
-      "so i'm going to try to build it up from just saying that in mathematics, when you have,",
-      "for a certain derivative, you can approximate it with finite differences.",
-      "so here's the partial, , derivative of f to x.",
-      "so that's differences of neighbouring pixels. and that's how we can approximate the finite difference.",
-      "so now i'm going to go back to to my previous question.",
-      "how would you then write this with with a convolutional filter?",
-      "given that how you can approximate the first derivative, that we're working over images that get values over pixel values.",
-      "what would be the filter that we can use to compute the first order image derivative?",
-      "we did with the the finite difference is it approximates the first image derivative.",
-      "what would be a filter that approximates a second order image derivative.",
-      "thank you. it's your. so maybe maybe that's a good exercise for for all of you.",
-      "if you have a piece of paper or just your laptop open. , you could just compute twice the finite differences between four pixels.",
-      "so you have x0, x1, x2, x3. and then you compute the finite differences between these four pixels once.",
-      "so then you have x zero minus x1x1 minus x2x2 minus x stream.",
-      "that's the first image derivative. and then apply it again on the second one.",
-      "exactly. . , exactly.",
-      "that's. that's the kernel. , it's it's it's obvious.",
-      "right. it's exactly what you get if you compute finite differences twice over the pixels you get, you get exactly that kernel.",
-      "going back to our.",
-      "so indeed, if you want to compute finite differences, you can approximate, , if you want to compute the second order derivative to find them,",
-      "the location of the edges, you can actually approximate the second order derivative with kernels that look this one minus to one.",
-      "and that will give you the. the second order etched into the x direction.",
-      "and then if you transpose this kernel, it will give you the second order derivative in the y direction.",
-      "again, is there a problem with this kernel? if we just apply this over the image."
-    ],
-    "transcript_count": 26
-  },
-  "29": {
-    "slide_content": "## Edge detection\n\n<!-- image -->\n\nFrom Fei-Fei Li\n\n- How can I take a second order image derivative?",
-    "transcripts": [
-      "what would be the filter that we can use to compute the first order image derivative?",
-      "and it's. so what does this say?",
-      "this is the function at the value x plus epsilon minus the function of the value x.",
-      "so as i said before, this in images would become neighbouring pixels.",
-      "so if i want to subtract neighbouring pixels from each other, what filter would i use?",
-      "and then these points here they're called the zero crossing of the the filter responses.",
-      "and that's where you can find the edges as by taking the second order image derivative.",
-      "so there are two ways in which you can compute image derivatives.",
-      "sorry in which you can detect edges. so now i'm going to ask you how can i take a second order image derivative.",
-      "so we talked about first order image derivatives. that's.",
-      "by approximating it with this this, , minus one one or just computing the derivative of a gaussian filter.",
-      "but now, over the course of."
-    ],
-    "transcript_count": 12
-  },
-  "23": {
-    "slide_content": "## Recap: Noisy edge detection\n\nFirst smooth then take the image derivative\n\n<!-- image -->\n\nFrom Fei-Fei Li",
-    "transcripts": [
-      "there is this. this filter is minus one plus one.",
-      "compute edges in the image and they are approximate first order image derivatives.",
-      "so now. imagine that you have a noisy signal, so imagine your image is noisy.",
-      "so here is not a smooth signal anymore. but there was some noise added to it.",
-      "and now i compute the image derivative.",
-      "i can compute it with this approximation with the filter that i showed you just now, the one minus one.",
-      "and then i get the whole bunch of noise out and i lose where the edge is more or less just everything becomes extremely noisy.",
-      "i had to first go over the image, smooth it with with the smoothing filter,",
-      "and then go again over the image with the derivative filter and compute the first order derivatives.",
-      "and now i can do that in one step by just going over the image with the derivative of a gaussian filter, and be done.",
-      "just one step up processing. so indeed it's a lot more efficient.",
-      "and this is the example. and then the noisy image just to show you.",
-      "so here i computed the derivative of the gaussian on the x direction and the derivative of the gaussian in the y direction.",
-      "and then here are the results for the noisy image. so i use here a sigma of three pixels."
-    ],
-    "transcript_count": 14
-  },
-  "21": {
-    "slide_content": "## Recap: Noisy edge detection\n\nf(c)\n\n<!-- image -->\n\n<!-- image -->\n\nFrom Fei-Fei Li\n\n- Why does this happen?",
-    "transcripts": [
-      "are you sick of me? and then some of the.",
-      "and we should maybe consider the bigger picture. i don't know how that would translate into function.",
-      "it's actually quite, quite an insightful answer.",
-      "it's it's because there's noise in the image and the noise will actually get amplified when computing this, this differences with the neighbours.",
-      "and we want to look at a scale this this bigger than the noise to be able to find the edge back."
-    ],
-    "transcript_count": 5
-  },
-  "22": {
-    "slide_content": "## Recap: Noisy edge detection\n\n<!-- image -->\n\n⊛\n\n[\n\n]\n\n<!-- image -->\n\n<!-- image -->\n\nHow can we fix this?\n\n<!-- image -->\n\n<!-- image -->\n\n⊛\n\n<!-- image -->\n\n[\n\n]\n\n<!-- image -->",
-    "transcripts": [
-      "and a lot of edges have been, , removed or are not clear anymore.",
-      "so i wonder, how can i fix this? do you have any thoughts?",
-      "crazy. gaussians. remove noise.",
-      "very good. yes. exactly. yes. yes, indeed.",
-      "so gaussians remove noise. and that's something that you have to keep in mind for the rest of your lives."
-    ],
-    "transcript_count": 5
-  },
-  "24": {
-    "slide_content": "## Derivative of convolution theorem\n\n<!-- formula-not-decoded -->\n\n- What does this say?",
-    "transcripts": [
-      "and then we can take the the first order derivative.",
-      "so that gives us a big a maximum where the edge was.",
-      "and that's a lot cleaner. but we can do this also in a more efficient way.",
-      "and for that, i have to talk about this derivative of convolution theorem.",
-      "can somebody tell me what what is this ugly equation here says?",
-      "in words. how do i translate this this equation in in words.",
-      "it's also a good, , , skill to learn, to be able to look at the formula and say, what does it say in words?",
-      "can you read it? so what's on the purple side?",
-      "derivative of. h. and, , this is a convolution.",
-      "so what does the purple side say again? you're almost got it right.",
-      "but the derivative of convolution. so it's the derivative of the image convolution with the gaussian filter."
-    ],
-    "transcript_count": 11
-  },
-  "25": {
-    "slide_content": "## Derivative of convolution theorem\n\n<!-- formula-not-decoded -->\n\n- What does this say? Derivative of convolution = convolution with derivative\n- •\n\n<!-- image -->\n\nFrom Fei-Fei Li",
-    "transcripts": [
-      "derivative of. h. and, , this is a convolution.",
-      "so what does the purple side say again? you're almost got it right.",
-      "but the derivative of convolution. so it's the derivative of the image convolution with the gaussian filter.",
-      "right. instead the smoothing, the derivative of the smoothed image here on the purple side, and then on the green side.",
-      "what? what do i have on the green side? ."
-    ],
-    "transcript_count": 5
-  },
-  "26": {
-    "slide_content": "## Noisy edge detection\n\n<!-- image -->\n\n<!-- image -->\n\n⊛\n\n∂\n\nh\n\n(\n\nx\n\n,\n\ny\n\n)\n\n∂\n\nx\n\n<!-- image -->\n\n<!-- image -->\n\n<!-- image -->\n\n⊛\n\n∂\n\nh\n\n(\n\nx\n\n,\n\ny\n\n)\n\n∂\n\ny\n\n<!-- image -->",
-    "transcripts": [
-      "and this is the example. and then the noisy image just to show you.",
-      "so here i computed the derivative of the gaussian on the x direction and the derivative of the gaussian in the y direction.",
-      "and then here are the results for the noisy image. so i use here a sigma of three pixels.",
-      "and you can see that the details on the apron are actually a bit more visible than they used to be,",
-      "and some of the edges have become a lot more visible than in the noisy image."
-    ],
-    "transcript_count": 5
-  },
-  "15": {
-    "slide_content": "## Recap: Edge detection\n\n<!-- image -->\n\nWhere are the edges?",
-    "transcripts": [
-      "anything said that? got you confused or.",
-      "i went to fast over. no.",
-      "then we go on and that's something that, , was referred to or mentioned just just a bit ago.",
-      "and that was another way of detecting the edges. so.",
-      "we have now again, our, , input image. and we again take a line through this input image.",
-      "and we have again the , values that have high intensity going to low intensity.",
-      "and we want to find the edge. now there is a second manner to find the edges in the image."
-    ],
-    "transcript_count": 7
-  },
-  "30": {
-    "slide_content": "## Edge detection\n\n<!-- image -->\n\nFrom Fei-Fei Li\n\n- How can I take a second order image derivative?\n- Convolve with . Is there a problem with this? [1, -2, 1]",
-    "transcripts": [
-      "that's that's that's a very good insight indeed. so if you want to obtain a second ordinary, what if you take a first started derivative twice.",
-      "and do you maybe know how would the filter look if you were going to do this with the filter,",
-      "we did with the the finite difference is it approximates the first image derivative.",
-      "what would be a filter that approximates a second order image derivative.",
-      "thank you. it's your. so maybe maybe that's a good exercise for for all of you.",
-      "that's another pixel. and then we have x2 minus x3.",
-      "there's another pixel. i should add one more x4. and then i have.",
-      "x three minus x four. and now i'm going to take the.",
-      "i'm going to take the second order image derivative by taking again a derivative over these pixels.",
-      "so second. order derivative.",
-      "so that's going to give me. x0 minus x1 minus.",
-      "x1 minus x2. then i'm going to have the second pixel."
-    ],
-    "transcript_count": 12
-  },
   "32": {
     "slide_content": "## Laplacian of Gaussian\n\n<!-- formula-not-decoded -->\n\nW\n\n<!-- image -->\n\n- What is controls the scale of the Laplacian of Gaussian?",
     "transcripts": [
@@ -399,30 +428,32 @@
     ],
     "transcript_count": 31
   },
-  "36": {
-    "slide_content": "## Laplacian normalization\n\nThe \"scale\" of the Laplacian is . σ\n\n- Problem: the response of a derivative of Gaussian decreases as increases σ\n- Solution: multiple the m derivative by . th σ m\n- How should we normalize the Laplacian of Gaussian?\n\n(a) Unnormalized\n\n<!-- image -->\n\n(b) Normalized\n\n<!-- image -->",
+  "33": {
+    "slide_content": "## Noisy edge detection\n\n<!-- image -->\n\n<!-- image -->\n\n⊛\n\n2\n\n2\n\nh\n\n(\n\nx\n\n,\n\ny\n\n)\n\n∂\n\nx\n\n∂\n\n<!-- image -->\n\n<!-- image -->\n\n<!-- image -->\n\n⊛\n\nh ( x , y ) ∂ 2 y ∂ 2\n\n<!-- image -->",
     "transcripts": [
-      "now if i take the second or the derivative of the derivative of that, it's not going to change its extent.",
-      "it's still going to be the same grid over each.",
-      "i have to draw it. i'm not going to it's not going to become smaller because i take the second derivative of h.",
-      "so the sigma still controls how how spread out this this function is.",
-      "so the sigma parameter of the gaussian will still control how how big this, this hat is here the laplacian of gaussian.",
-      "and then the second order and that's actually the laplacian. we don't even see it anymore.",
-      "it's completely flat compared to the original notion. so that's a problem.",
-      "we don't want to have this.",
-      "so then people have actually show that the proper way to to use gaussian derivatives is to actually use normalised gaussian derivatives.",
-      "and the way to normalise them is to multiply the empty derivative by sigma to the power m.",
-      "so how should we normalise the laplacian in this case? .",
-      "my brother was killed by sigma. .",
-      "because the liberation is a second order image derivative.",
-      "that means we have to multiply it with the sigma to the power two.",
-      "and that's the problem. we don't want to to use a normalised sigma.",
-      "but then if we use the correctly normalised sigma on this in the second row,",
-      "it's the same laplacian responses by convolving with laplace with different scales again.",
-      "but then this doesn't flatten out as we increase the sigma.",
-      "and then also what happens is, is that we get an extremum."
+      "and then if i take the the first order image derivative then it will look this.",
+      "so we'll have an extrema a minimum here at this edge and a maximum here at this edge.",
+      "so those are the two edge points the extrema. and there's a way to approximate this, this first or the derivative.",
+      "and i think you've already used it in the, the, , edge detection lecture.",
+      "but if you think about it, just in mathematics, that's also an option.",
+      "we have now again, our, , input image. and we again take a line through this input image.",
+      "and we have again the , values that have high intensity going to low intensity.",
+      "and we want to find the edge. now there is a second manner to find the edges in the image.",
+      "the first one was to compute the first order image derivatives.",
+      "and that would give us the extrema. so that would give us a minimum and a maximum here."
     ],
-    "transcript_count": 19
+    "transcript_count": 10
+  },
+  "34": {
+    "slide_content": "## Noisy edge detection\n\n<!-- image -->\n\nLaplacian:\n\n2x\n\n<!-- image -->\n\n<!-- image -->\n\n<!-- formula-not-decoded -->\n\n<!-- image -->",
+    "transcripts": [
+      "and now i'm going to show here an example of performing this same edge detection.",
+      "but now with the laplacian. so we have the second order derivative on x and the second order derivative on the right of the gaussian.",
+      "and then i convolve the image with this. and then i get the the edges , on the the x and y direction.",
+      "it's i see here they're flipped. so this should be actually here.",
+      "and the other one should be there. , and then what you see is that typically they actually have both dark and bright, , values along the edge."
+    ],
+    "transcript_count": 5
   },
   "35": {
     "slide_content": "## Blob detection\n\n- An edge is a ripple in the image.\n- We can find blobs at the intersection of ripples.\n- So we can use the Laplacian of Gaussian to find blobs.\n\n<!-- image -->",
@@ -466,78 +497,35 @@
     ],
     "transcript_count": 36
   },
-  "39": {
-    "slide_content": "## Normalized Laplacian of Gaussian\n\n<!-- image -->",
+  "36": {
+    "slide_content": "## Laplacian normalization\n\nThe \"scale\" of the Laplacian is . σ\n\n- Problem: the response of a derivative of Gaussian decreases as increases σ\n- Solution: multiple the m derivative by . th σ m\n- How should we normalize the Laplacian of Gaussian?\n\n(a) Unnormalized\n\n<!-- image -->\n\n(b) Normalized\n\n<!-- image -->",
     "transcripts": [
-      "and what's the scale of the, , laplacian of the gaussian?",
-      "and that is the extent of the function. and that is controlled by the sigma parameter of the gaussian.",
-      "and now i'm going to show here an example of performing this same edge detection.",
-      "but now with the laplacian. so we have the second order derivative on x and the second order derivative on the right of the gaussian.",
-      "and then i convolve the image with this. and then i get the the edges , on the the x and y direction.",
-      "but before we talk about that, we have to talk about, , normalising the laplacian because dislocations have a bit of a problem.",
-      "and that problem is that they are derivatives of a gaussian.",
-      "and what happens when you have derivatives of a of the gaussian is that the higher the order of the gaussian, the lower the magnitude.",
-      "so if you go to this is the in orange is the zero order.",
-      "so that's just the original gaussian. and then in in blue you have the first order.",
-      "and then you see it's already the magnitude is a lot lower than the original gaussian.",
+      "now if i take the second or the derivative of the derivative of that, it's not going to change its extent.",
+      "it's still going to be the same grid over each.",
+      "i have to draw it. i'm not going to it's not going to become smaller because i take the second derivative of h.",
+      "so the sigma still controls how how spread out this this function is.",
+      "so the sigma parameter of the gaussian will still control how how big this, this hat is here the laplacian of gaussian.",
       "and then the second order and that's actually the laplacian. we don't even see it anymore.",
       "it's completely flat compared to the original notion. so that's a problem.",
       "we don't want to have this.",
+      "so then people have actually show that the proper way to to use gaussian derivatives is to actually use normalised gaussian derivatives.",
+      "and the way to normalise them is to multiply the empty derivative by sigma to the power m.",
+      "so how should we normalise the laplacian in this case? .",
       "my brother was killed by sigma. .",
       "because the liberation is a second order image derivative.",
       "that means we have to multiply it with the sigma to the power two.",
-      "and if we do that, then you see here in purple again that's the laplacian.",
-      "that's the normalised laplacian.",
-      "so he actually has really nice values compared with the original, , orange function and the other orders of a derivative of the gaussian.",
-      "so that's the way to properly use laplace.",
-      "and you should always use when you're losing operation, use the normalise operation with the correct sigma multiplier.",
-      "so that's indeed here. here's the laplacian again in green.",
-      "the second or the derivative across x and y. and then we multiply it with the sigma squared.",
-      "and now there's a little theorem that tells us how to find blobs in the image using the laplacian."
+      "and that's the problem. we don't want to to use a normalised sigma.",
+      "but then if we use the correctly normalised sigma on this in the second row,",
+      "it's the same laplacian responses by convolving with laplace with different scales again.",
+      "but then this doesn't flatten out as we increase the sigma.",
+      "and then also what happens is, is that we get an extremum."
     ],
-    "transcript_count": 25
+    "transcript_count": 19
   },
-  "34": {
-    "slide_content": "## Noisy edge detection\n\n<!-- image -->\n\nLaplacian:\n\n2x\n\n<!-- image -->\n\n<!-- image -->\n\n<!-- formula-not-decoded -->\n\n<!-- image -->",
-    "transcripts": [
-      "and now i'm going to show here an example of performing this same edge detection.",
-      "but now with the laplacian. so we have the second order derivative on x and the second order derivative on the right of the gaussian.",
-      "and then i convolve the image with this. and then i get the the edges , on the the x and y direction.",
-      "it's i see here they're flipped. so this should be actually here.",
-      "and the other one should be there. , and then what you see is that typically they actually have both dark and bright, , values along the edge."
-    ],
-    "transcript_count": 5
-  },
-  "51": {
-    "slide_content": "## Multi-scale blob detection in images\n\n- Find the local extrema (minima/maxima) by looking at all neighbors across scales.\n\n<!-- image -->",
-    "transcripts": [
-      "of the blobs in an image and how to do multi scale, , image recognition.",
-      "and for that we need the location.",
-      "and also, another take home message from the previous part of the lecture was that there are two ways to detect edges,",
-      "and that's which first started there image derivatives or with second order image derivatives.",
-      "first order image derivatives. the extrema points are the edges.",
-      "and then also what happens is, is that we get an extremum.",
-      "so across all the sigma that we're looking at this has the lowest value.",
-      "it's an extreme at the sigma equals eight for this blob.",
-      "so that means that is the scale at which we can detect this blob.",
-      "so the blob here. went from -8 to 8, and this sigma was the best value we could find.",
-      "and then i pick the the blob that gives a maximum across all these scales.",
-      "so that translates if i go back to my hierarchy of of responses that translates to the maximum across scales here.",
-      "right. so in the hierarchy i have to take the maximum across layers.",
-      "but then i also want to take the maximum spatially between the pixels in my local neighbourhood because i want to find flowers.",
-      "in the whole image. i don't want to find one flower here. i want to find all these flowers.",
-      "and you say, is this a maximum value. and if it's a maximum value, then i keep that.",
-      "and that's how we find the blobs in the image.",
-      "and then for example, the example with the sunflowers, this is what it would actually end up looking .",
-      "so you have a lot of small blobs in the background. then you have bigger blobs in the middle and even bigger blobs in the front.",
-      "and then you have found all the blobs in the image at all the scales that they were present that.",
-      "so that's comparing across scale but also across neighbour.",
-      "so it's also. so it's comparing layers with each other and comparing pixels with with with its neighbouring pixels.",
-      "any other questions?",
-      "no. then that was it. , for the next time, we're going to talk about how to describe this.",
-      "these blobs, once we found them. so we found all the blobs, but we don't know how to describe them, to find them back in another image."
-    ],
-    "transcript_count": 25
+  "37": {
+    "slide_content": "## Scale selection\n\n<!-- formula-not-decoded -->\n\n<!-- formula-not-decoded -->",
+    "transcripts": [],
+    "transcript_count": 0
   },
   "38": {
     "slide_content": "## Scale selection\n\n<!-- formula-not-decoded -->\n\n<!-- formula-not-decoded -->\n\n- The magnitude of the Laplacian response will achieve a maximum/minimum at the center of the blob, provided the scale of the Laplacian is 'matched' to the scale of the blob .\n\n<!-- image -->\n\nWhat does this say?\n\n20",
@@ -583,42 +571,101 @@
     ],
     "transcript_count": 38
   },
-  "50": {
-    "slide_content": "## Fast Laplacian responses\n\n<!-- image -->\n\n- How do we find the blobs in the image?",
+  "39": {
+    "slide_content": "## Normalized Laplacian of Gaussian\n\n<!-- image -->",
     "transcripts": [
-      "so here's an example to visualise it. here we have the the the blob again it's it's a cut through the blob in 1d.",
-      "so it's just one bump here one ripple. and then here we have the the laplacian responses with different scales.",
-      "so there's different sigmas here on the x axis. sigma is one sigma is two, sigma is four eight and 16.",
-      "and then here's an unnormalised laplacian response.",
-      "and then what happens here is that the responses by convolving the image with this laplacian",
-      "and then i have a range of, of gaussian scales of image scales.",
-      "sorry. and then i'm going to detect with the laplacian i'm going to detect blobs at all this scale.",
-      "so i'm going to find here the very small sunflowers.",
-      "and here in the from the very big sunflowers using this, this algorithm.",
-      "and this is actually what a skill space is, but it's a bit more formal.",
-      "so you see here the , the, the lowest , the , the lowest scales, the, the lowest sigma.",
-      "you have a lot of details and a, the highest sigma you have just big white dots where the flowers in the background.",
-      "so this will already approximate very efficiently the, , the , derivative of .",
-      "the second derivative of a gaussian, the laplacian. so how do i actually now find my blobs in the image.",
-      "so i computed. now i have this this scale space of responses right.",
-      "i have all these dislocation approximations over my my image, and now i want to get my blobs out.",
-      "what do i do? .",
-      "different funding, different kinds of options. , i think the difference between the, , the images is a good direction to thinking into.",
-      "but i want to give you a little hint. and that is this, this, , theorem that we had on how to find the the blobs.",
-      "right. so now we have a scale space.",
-      "we have an approximation of all the the laplacian responses in the scale space.",
-      "that's the black and white images on on the left side.",
-      "and now i want to get all my blobs out. , i can just do that from the image.",
-      "the maximum is the maximum of the application.",
-      "the the difference is it gives you.",
-      "so this gives you an approximation of the operational responses over this image.",
-      "right. with different sigmas. so we have now a a scale space of laplace responses.",
-      "every layer is a different, , size of laplace in response.",
-      "and now how do i find my blobs? .",
-      "long. , in our skills base and, , more than just, , my clothing.",
-      "mhm. i think that's. and the maximum minimum value of what?"
+      "and what's the scale of the, , laplacian of the gaussian?",
+      "and that is the extent of the function. and that is controlled by the sigma parameter of the gaussian.",
+      "and now i'm going to show here an example of performing this same edge detection.",
+      "but now with the laplacian. so we have the second order derivative on x and the second order derivative on the right of the gaussian.",
+      "and then i convolve the image with this. and then i get the the edges , on the the x and y direction.",
+      "but before we talk about that, we have to talk about, , normalising the laplacian because dislocations have a bit of a problem.",
+      "and that problem is that they are derivatives of a gaussian.",
+      "and what happens when you have derivatives of a of the gaussian is that the higher the order of the gaussian, the lower the magnitude.",
+      "so if you go to this is the in orange is the zero order.",
+      "so that's just the original gaussian. and then in in blue you have the first order.",
+      "and then you see it's already the magnitude is a lot lower than the original gaussian.",
+      "and then the second order and that's actually the laplacian. we don't even see it anymore.",
+      "it's completely flat compared to the original notion. so that's a problem.",
+      "we don't want to have this.",
+      "my brother was killed by sigma. .",
+      "because the liberation is a second order image derivative.",
+      "that means we have to multiply it with the sigma to the power two.",
+      "and if we do that, then you see here in purple again that's the laplacian.",
+      "that's the normalised laplacian.",
+      "so he actually has really nice values compared with the original, , orange function and the other orders of a derivative of the gaussian.",
+      "so that's the way to properly use laplace.",
+      "and you should always use when you're losing operation, use the normalise operation with the correct sigma multiplier.",
+      "so that's indeed here. here's the laplacian again in green.",
+      "the second or the derivative across x and y. and then we multiply it with the sigma squared.",
+      "and now there's a little theorem that tells us how to find blobs in the image using the laplacian."
     ],
-    "transcript_count": 31
+    "transcript_count": 25
+  },
+  "40": {
+    "slide_content": "## Normalized Laplacian of Gaussian\n\n<!-- image -->",
+    "transcripts": [],
+    "transcript_count": 0
+  },
+  "41": {
+    "slide_content": "## Questions?\n\n<!-- image -->",
+    "transcripts": [],
+    "transcript_count": 0
+  },
+  "42": {
+    "slide_content": "## Scale\n\nA \"magic\" way to find the correct scale at which to analyze each part of an image\n\n<!-- image -->",
+    "transcripts": [
+      "so that's the part we would use. we lose when when we, , downscale images, we lose the high frequency details of the image.",
+      "so when we talk about scale, i said,",
+      "we want to find some magic way that would tell us at which scale to look at at different parts of, of this image.",
+      "so for example, there's different parts that help us recognise this specific dark,",
+      "in this image and then, , localise it back and in the other image.",
+      "and now there is a magic way. luckily, otherwise we wouldn't be here talking about it.",
+      "there is a magic way to talk about to find the correct scale at which to look at an image.",
+      "and that is using image derivatives.",
+      "so this is a bit of a warning. we're going to talk about image derivatives in this lecture a lot.",
+      "and we're going to i'm going to try to slowly build it up.",
+      "it's it's all the same. it's it's equivalent with each other.",
+      "so we know how to find, , blobs with this, this little theorem that tells us it's not an extreme response if we are using,",
+      "laplacian of the, , scale match to the the scale of the blob.",
+      "and now i'm going to go back to the very first slide that we had or one of the first slides, the second slide.",
+      "and that was that. i want to find a magic way that tells me at which scale to look at the part in an image.",
+      "and that's true, right? so now i have a way. i have this magic way.",
+      "i know that, for example, for this fish, i should probably use a population of 100 over sigma equals 100.",
+      "and for this, this tiny fish here, i should probably use a laplacian with a sigma of one, and so on and so forth.",
+      "right. so i have all these fish. and for each one of them i know i should use a different, , scale of the laplace."
+    ],
+    "transcript_count": 19
+  },
+  "43": {
+    "slide_content": "## Scale selection\n\n- Each circle is centered at a Laplacian extremum and has a radius proportional to the Laplacian scale, . σ\n\n<!-- image -->",
+    "transcripts": [
+      "i'm computing the laplacian responses over this sunflower field, and every circle is a,",
+      "extremum response or maximum or minimum response in, , this laplacian, , space.",
+      "so the i convolve the image with laplacian gaussian.",
+      "then i get the minimum and the maximum values. oops sorry.",
+      "i get the minimum and the maximum values. and then i draw a circle at the location where the minimum or the maximum is,",
+      "and the radius of the circle is proportional to the sigma of the laplacian values.",
+      "and now what you see is that i get some of the sunflowers here in the back quite nicely.",
+      "but here in the front i only get the corners of the petals of this flower so i don't get the full sunflower.",
+      "and now i can also change my sigma and i can use a very big sigma."
+    ],
+    "transcript_count": 9
+  },
+  "44": {
+    "slide_content": "## Scale selection\n\n- Each circle is centered a Laplacian extremum and has a radius proportional to the Laplacian scale, . σ\n\n<!-- image -->",
+    "transcripts": [],
+    "transcript_count": 0
+  },
+  "45": {
+    "slide_content": "## Scale selection\n\n- Each circle is centered a Laplacian extremum and has a radius proportional to the Laplacian scale, . σ\n\n<!-- image -->",
+    "transcripts": [],
+    "transcript_count": 0
+  },
+  "46": {
+    "slide_content": "## Scale selection\n\n- We can use a range of values in the Laplacian. σ\n- Alternatively what can we do? (hint: \"derivative of convolution\" theorem).",
+    "transcripts": [],
+    "transcript_count": 0
   },
   "47": {
     "slide_content": "## Scale selection\n\n- We can use a range of values in the Laplacian. σ\n- Alternatively what can we do? (hint: \"derivative of convolution\" theorem).\n\n<!-- image -->\n\nWe can blur the image with increasing values of and then compute the Laplacian responses. σ",
@@ -660,21 +707,6 @@
     ],
     "transcript_count": 34
   },
-  "43": {
-    "slide_content": "## Scale selection\n\n- Each circle is centered at a Laplacian extremum and has a radius proportional to the Laplacian scale, . σ\n\n<!-- image -->",
-    "transcripts": [
-      "i'm computing the laplacian responses over this sunflower field, and every circle is a,",
-      "extremum response or maximum or minimum response in, , this laplacian, , space.",
-      "so the i convolve the image with laplacian gaussian.",
-      "then i get the minimum and the maximum values. oops sorry.",
-      "i get the minimum and the maximum values. and then i draw a circle at the location where the minimum or the maximum is,",
-      "and the radius of the circle is proportional to the sigma of the laplacian values.",
-      "and now what you see is that i get some of the sunflowers here in the back quite nicely.",
-      "but here in the front i only get the corners of the petals of this flower so i don't get the full sunflower.",
-      "and now i can also change my sigma and i can use a very big sigma."
-    ],
-    "transcript_count": 9
-  },
   "48": {
     "slide_content": "## Scale spaces\n\n<!-- image -->\n\nBuild a scale-space :\n\n- 1) Octave: Take the original image and progressively blur it N times with increasing such that: σ = σ k α k σ 0\n- 2) Resize the image to its half and repeat the process.",
     "transcripts": [
@@ -709,5 +741,88 @@
       "i can just take these differences pixel wise differences between these images and in the in the pyramid between the lower and the next,"
     ],
     "transcript_count": 16
+  },
+  "50": {
+    "slide_content": "## Fast Laplacian responses\n\n<!-- image -->\n\n- How do we find the blobs in the image?",
+    "transcripts": [
+      "so here's an example to visualise it. here we have the the the blob again it's it's a cut through the blob in 1d.",
+      "so it's just one bump here one ripple. and then here we have the the laplacian responses with different scales.",
+      "so there's different sigmas here on the x axis. sigma is one sigma is two, sigma is four eight and 16.",
+      "and then here's an unnormalised laplacian response.",
+      "and then what happens here is that the responses by convolving the image with this laplacian",
+      "and then i have a range of, of gaussian scales of image scales.",
+      "sorry. and then i'm going to detect with the laplacian i'm going to detect blobs at all this scale.",
+      "so i'm going to find here the very small sunflowers.",
+      "and here in the from the very big sunflowers using this, this algorithm.",
+      "and this is actually what a skill space is, but it's a bit more formal.",
+      "so you see here the , the, the lowest , the , the lowest scales, the, the lowest sigma.",
+      "you have a lot of details and a, the highest sigma you have just big white dots where the flowers in the background.",
+      "so this will already approximate very efficiently the, , the , derivative of .",
+      "the second derivative of a gaussian, the laplacian. so how do i actually now find my blobs in the image.",
+      "so i computed. now i have this this scale space of responses right.",
+      "i have all these dislocation approximations over my my image, and now i want to get my blobs out.",
+      "what do i do? .",
+      "different funding, different kinds of options. , i think the difference between the, , the images is a good direction to thinking into.",
+      "but i want to give you a little hint. and that is this, this, , theorem that we had on how to find the the blobs.",
+      "right. so now we have a scale space.",
+      "we have an approximation of all the the laplacian responses in the scale space.",
+      "that's the black and white images on on the left side.",
+      "and now i want to get all my blobs out. , i can just do that from the image.",
+      "the maximum is the maximum of the application.",
+      "the the difference is it gives you.",
+      "so this gives you an approximation of the operational responses over this image.",
+      "right. with different sigmas. so we have now a a scale space of laplace responses.",
+      "every layer is a different, , size of laplace in response.",
+      "and now how do i find my blobs? .",
+      "long. , in our skills base and, , more than just, , my clothing.",
+      "mhm. i think that's. and the maximum minimum value of what?"
+    ],
+    "transcript_count": 31
+  },
+  "51": {
+    "slide_content": "## Multi-scale blob detection in images\n\n- Find the local extrema (minima/maxima) by looking at all neighbors across scales.\n\n<!-- image -->",
+    "transcripts": [
+      "of the blobs in an image and how to do multi scale, , image recognition.",
+      "and for that we need the location.",
+      "and also, another take home message from the previous part of the lecture was that there are two ways to detect edges,",
+      "and that's which first started there image derivatives or with second order image derivatives.",
+      "first order image derivatives. the extrema points are the edges.",
+      "and then also what happens is, is that we get an extremum.",
+      "so across all the sigma that we're looking at this has the lowest value.",
+      "it's an extreme at the sigma equals eight for this blob.",
+      "so that means that is the scale at which we can detect this blob.",
+      "so the blob here. went from -8 to 8, and this sigma was the best value we could find.",
+      "and then i pick the the blob that gives a maximum across all these scales.",
+      "so that translates if i go back to my hierarchy of of responses that translates to the maximum across scales here.",
+      "right. so in the hierarchy i have to take the maximum across layers.",
+      "but then i also want to take the maximum spatially between the pixels in my local neighbourhood because i want to find flowers.",
+      "in the whole image. i don't want to find one flower here. i want to find all these flowers.",
+      "and you say, is this a maximum value. and if it's a maximum value, then i keep that.",
+      "and that's how we find the blobs in the image.",
+      "and then for example, the example with the sunflowers, this is what it would actually end up looking .",
+      "so you have a lot of small blobs in the background. then you have bigger blobs in the middle and even bigger blobs in the front.",
+      "and then you have found all the blobs in the image at all the scales that they were present that.",
+      "so that's comparing across scale but also across neighbour.",
+      "so it's also. so it's comparing layers with each other and comparing pixels with with with its neighbouring pixels.",
+      "any other questions?",
+      "no. then that was it. , for the next time, we're going to talk about how to describe this.",
+      "these blobs, once we found them. so we found all the blobs, but we don't know how to describe them, to find them back in another image."
+    ],
+    "transcript_count": 25
+  },
+  "52": {
+    "slide_content": "## Multi-scale blob detection in images\n\n<!-- image -->",
+    "transcripts": [],
+    "transcript_count": 0
+  },
+  "53": {
+    "slide_content": "## Questions?\n\n<!-- image -->",
+    "transcripts": [],
+    "transcript_count": 0
+  },
+  "54": {
+    "slide_content": "## Reading material next lecture:\n\n- Article :\n- https://www.cs.ubc.ca/~lowe/papers/ijcv04.pdf\n- Distinctive Image Features from Scale-Invariant Keypoints , David G. Lowe, IJCV 2024.\n- Section 7.1.2 Feature descriptors, in Szeliski book\n- Video lecture Mubarak Shah: https://www.youtube.com/watch? v=NPcMS49V5hg",
+    "transcripts": [],
+    "transcript_count": 0
   }
 }

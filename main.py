@@ -1,22 +1,22 @@
-from page_extractor import PageContentExtractor
-from transcriptions import process_transcripts
-from build_data import build_transcripts
-from chunk_matcher import TranscriptSlideChunker
-from embedding import model
+from src.extractors.page_extractor import PageContentExtractor
+from src.processors.transcriptions import process_transcripts
+from src.processors.build_data import build_transcripts
+from src.processors.chunk_matcher import TranscriptSlideChunker
+from src.core.embedding import model
 
 # Step 1: Extract slides from PDF
 print("="*80)
 print("STEP 1: Extracting slides from PDF")
 print("="*80)
 extractor = PageContentExtractor()
-pages = extractor.extract_pages("CV8.pdf")
+pages = extractor.extract_pages("lecture\\CV8.pdf")
 print(f"Extracted {len(pages)} pages")
 
 # Step 2: Process transcripts and generate embeddings
 print("\n" + "="*80)
 print("STEP 2: Processing transcripts")
 print("="*80)
-lines = process_transcripts("transcripts.txt")
+lines = process_transcripts("lecture\\transcripts.txt")
 transcripts = build_transcripts(lines)  # Returns {sentence: embedding}
 print(f"Processed {len(transcripts)} transcript sentences")
 
@@ -87,6 +87,5 @@ print(f"  - slide_data[6][0]  # Get slide 6 content only")
 print(f"  - slide_data[6][1]  # Get slide 6 transcript sentences")
 
 # Optional: Export to files
-from data_utils import export_to_json, export_to_text
+from src.utils.data_utils import export_to_json
 export_to_json(slide_data, "slide_data.json")
-export_to_text(slide_data, "slide_data.txt")
